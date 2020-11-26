@@ -1,0 +1,19 @@
+.layer{
+    background-color: #adcad696 !important;
+    z-index: 10;
+}
+
+.icon {
+    background: url('/static/icons/stats.svg');
+    height: 20px;
+    width: 20px;
+    display: block;
+    /* Other styles here */
+}
+.bannerimage {
+    background-image: url(/static/images/tree-247122.jpg);
+    background-size: cover;
+    background-position: center;
+    z-index: 9000;
+  }
+  

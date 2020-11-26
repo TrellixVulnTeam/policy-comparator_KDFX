@@ -1,13 +1,13 @@
 <!--This file generates the homepage template-->
 <!--Yann David | Last modified: 21.11-->
-{% extends "base.html" %}{% block title %} The Project {% endblock %}
+{% extends "base.html" %}{% block title %} The Project - {% endblock %}
 {% block head %} 
 {{ super() }}
 <style></style>
 {% endblock %}
 {% block content %} 
 
-<div class="jumbotron jumbotron-fluid layer">
+<div class="jumbotron jumbotron-fluid">
         <div class = "container">
             <h1>The Environmental Policy Comparator</h1>
             <h5>Let's democratise scientific knowledge on Environmental Policies!</h5>
@@ -15,8 +15,10 @@
 </div> 
 
 <div class="container">
-    <div class="mt-5 mb-5 col-md-12">
-        <h2>Why an Environmental Policy Comparator?</h2>   
+    <div class="mb-2 col-md-12">
+        <div class="header sticky-top headbar">
+            <h2>Why an Environmental Policy Comparator?</h2>   
+        </div>
         <h4>The Idea</h4>
         <p>The project aims at developing of a web-based tool allowing users to access information about the effectiveness of environmental policies based on systematic reviews and meta-analyses of the scientific literature. This tool aims at democratising access to scientific evidence and sources with the end goal of improving policy decisions pace and quality.</p>
         <h4>The Content</h4>
@@ -27,16 +29,19 @@
         </ul>
         The back-end tools are the different applications and features embedded in the prototype that transform raw data into a user-friendly interface (the latter being called the front-end). Many tools could be developed around this project, from the automatised selection of relevant articles to their summarising, but we will focus on the development of a relevant impact index and policy characterisation criterion for this proof of concept. Further automation could be developed; we leave that for latter potential research and development. </p>
     </div>    
-    <hr class="my-3">
-    <div class="mt-5 mb-5 col-md-12">
-        <h2>Who is behind the project?</h2>   
+    <hr class="my-1">
+    <div class="mb-2 col-md-12">
+        <div class="header sticky-top headbar">
+            <h2>Who is behind the Project?</h2>   
+        </div> 
         <p>For now, we're just a small team of two persons behind the project. If you're interested in joinning the journey, please feel free to contact us <a href="mailto:yann.collindavid@gmail.com">here</a>!</p>
     </div>  
-    <hr class="my-3">
-
-    <div class="mt-5 mb-5 col-md-12">
-        <h2>Development Schedule - Proof of Concept </h2>   
-        <h4>First stage: Creating a prototype project - <span class="badge badge-pill badge-info size-reduced">In progress</span> </h4>
+    <hr class="my-1">
+    <div class="mb-2 col-md-12">
+        <div class="header sticky-top headbar">
+            <h2>Development Schedule - Proof of Concept</h2>   
+        </div>
+        <h4>First stage: Creating a prototype project - <span class="badge badge-pending">IN PROGRESS</span> </h4>
         <p>The first stage of the project will be devoted to the development of the tool used to share information with users. Some desired key features have been discussed during the first meeting: 
         <ul>
             <li>Configurability by the user: selection of the relative importance of the different criterion</li>
@@ -54,20 +59,20 @@
             <li>Deterline the first policies presented in the tool</li>
         </ul>
         </p>
-        <h4>Second Stage: Developing the Data Selection Protocol  - <span class="badge badge-pill badge-light size-reduced">Not started</span> </h4>
+        <h4>Second Stage: Developing the Data Selection Protocol  - <span class="badge badge-waiting">NOT STARTED</span> </h4>
         <ul>
             <li>Define a Policy Characterisation Framework </li>
             <li>Construct an index for impact evaluation: from articles results to meta-analysis</li>
             <li>Define a first-best systematic review methodology (including comprehensive literature review) and propose a second-best strategy for the proof-of-concept, with proposals to improve accuracy with further development after presentation of the prototype if the project is further developed.</li>
         </ul>
-        <h4>Third Stage: Testing the Tool from the Administrator Perspective: growing the database - <span class="badge badge-pill badge-light size-reduced">Not started</span> </h4>
+        <h4>Third Stage: Testing the Tool from the Administrator Perspective: growing the database - <span class="badge badge-waiting">NOT STARTED</span> </h4>
         <ul>
             <li>Define the subset of policies included in the prototype </li>
             <li>Apply the second-best protocol defined in the second stage to grow the database </li>
             <li>Implement the most important and most feasible improvements needed. </li>
             <li>Summarize challenges faced in this third stage as an “Improvements needed” chapter in the working paper </li>
         </ul>
-        <h4>Fourth Stage: Presenting the Proof of Concept Project - <span class="badge badge-pill badge-light size-reduced">Not started</span> </h4>
+        <h4>Fourth Stage: Presenting the Proof of Concept Project - <span class="badge badge-waiting">NOT STARTED</span> </h4>
         <ul>
             <li>Think about the future of the Project: was it a good idea? If yes: Further development priorities? Partnerships? Funding (for hosting needs)?</li>
             <li>Publish the tool online: hosting costs </li>
@@ -75,16 +80,13 @@
             <li>Presentations / Call for Data? </li>
         </ul>
     </div>
-    <hr class="my-3">
+    <hr>
 
-    <div class="mt-5 mb-5 col-md-12">
-        <h2>Methodology</h2>   
+    <div class="mb-2 col-md-12">
+        <div class="header sticky-top headbar">
+            <h2>Methodology</h2>   
+        </div> 
                 <p>Methodologies will be presented here shortly.</p>
     </div>
-
 </div>
-
-
-
-
 {% endblock %}

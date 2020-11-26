@@ -2,18 +2,22 @@
 <!--Yann David | Last modified: 24.10-->
 {% extends "base.html" %}
 {% block head %} 
+{{ super() }}
 {% endblock %}
 {% block content %} 
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-5">Welcome on the Environmental Policy Comparator</h1>
-        <p class="lead">Our objective is to democratise access to scientific knowledge about the impact of different environmental policies. 
-            This project is developped to target both a general public and policy makers.</p>
-        <hr class="my-6">
-        <p>You are currently scrolling through our prototype version "Beta 0.1".</p>
-        <p class="lead">
-            <a class="btn btn-success btn-lg" href="/project" role="button">Learn more about the Project!</a>
-        </p>
-    </div>
-  </div>
+<div class="bannerimage">
+    <div class="jumbotron jumbotron-fluid layer">
+        <div class="container">
+            <h1 class="display-5">Welcome on the Environmental Policy Comparator</h1>
+            <p class="lead">Our objective is to democratise access to scientific knowledge about the impact of different environmental policies. 
+                This project is developped to target both a general public and policy makers.</p>
+            <hr class="my-6">
+            <p>You are currently scrolling through our prototype version <i>Beta 0.1.1.</i></p>
+            <p class="lead">
+                <a class="btn btn-success btn-lg" href="/project" role="button">Learn more about the Project!</a>
+            </p>
+        </div>
+      </div>
+</div>
+
 {% endblock %}
