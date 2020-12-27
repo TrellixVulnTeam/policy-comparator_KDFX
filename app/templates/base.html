@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--This file is the base template for the website-->
+<!--Yann David | Last modified: 26.11-->
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">    
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/mystyle.css') }}">    
+        
+        <!--Font Awesome-->
+        <script src="https://kit.fontawesome.com/8c50a9fa48.js" crossorigin="anonymous"></script>
+
+        <!-- Google font Noto Sans Jp -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300&display=swap" rel="stylesheet"> 
+        <!--Content-->
+        {% block head %}
+        <title>
+            {% block title %}{% endblock %}Environmental Policies Comparator
+        </title>
+        {% endblock %}
+        <meta name="viewport" content="width=device-width"
+    </head>
+    <header>
+      <nav class="navbar fixed-top navbar-toggleable-xl navbar-light navbarText">
+        <div class="container">
+          <a class="navbar-brand navbarText" href="{{ url_for('index')}}">
+            <i class="far fa-chart-bar"></i> Comparator</a>
+            <div class="navbar-collapse collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link navbarText" href="{{ url_for('project')}}">Project Development</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link navbarText" href="#">Methodology</a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    </header>
+  
+    <body>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+          <div class="alert-{{ category }}">
+            <div class="container alertHome">{{ message }}</div>
+          </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      {% block content %}
+      {% endblock %}
+      <!-- JavaScript Part -->
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>  
+    </body>
+      <!--Footer-->
+      <footer class="page-footer">
+        <div class="container">
+          <hr>
+          <p style="text-align:center;">Environmental Policies Comparator - December 2020 - Alpha - <a href="mailto:yann.collindavid@gmail.com">Yann David</a></p>
+        </div>
+        </footer>
+</html>
