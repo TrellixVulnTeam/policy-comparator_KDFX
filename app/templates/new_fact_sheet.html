@@ -1,0 +1,63 @@
+<!--This file generates Fact-Sheet Creation template-->
+<!--Yann David | Last modified: 24.10-->
+{% extends "base.html" %}{% block title %} Contribute - {% endblock %}
+{% block head %} 
+{{ super() }}
+{% endblock %}
+{% block content %} 
+<div class="jumbotron jumbotron-fluid">
+  <div class = "container">
+      <h1>Hello {{ current_user.name }} {{ current_user.surname }}.</h1>
+      <legend class="border-bottom mb-4">You can create a Policy-Target Fact-Sheet below</legend>
+  </div>
+</div> 
+
+<div class="container">
+  <form method="POST" action="" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+      <!-- Title of the Fact-Sheet -->
+      <div class="form-group">
+        {{ form.title.label(class="form-control-label") }}
+        {% if form.title.errors %}
+        {{ form.title(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.title.errors %}
+            <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+      {% else %}
+        {{ form.title(class="form-control form-control-lg") }}
+      {% endif %} 
+      </div>
+      <!-- Abstract -->
+      <div class="form-group">
+        {{ form.abstract.label(class="form-control-label") }}
+        {% if form.abstract.errors %}
+        {{ form.abstract(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.abstract.errors %}
+            <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+      {% else %}
+        {{ form.abstract(class="form-control form-control-lg") }}
+      {% endif %} 
+      </div>
+      <!-- Picture -->
+      <div class="form-group">
+        {{ form.picture.label(class="form-control-label") }}
+        {% if form.picture.errors %}
+          {% for error in form.picture.errors %}
+            <span class="text-danger">{{ error }}</span>
+          {% endfor %}
+        {% endif %}
+        {{ form.picture(class="form-control-file") }}
+      </div>
+    </fieldset>
+    <div class="form-group">
+      {{ form.submit(class="btn btn-outline-info") }}
+    </div>
+  </form>
+</div>
+{% endblock %}

@@ -1,7 +1,7 @@
 # Testing zone
 from app import db
-# db.create_all()
-from app.models import Sheet, Article
+db.create_all()
+from app.models import Sheet, Article, User
 
 
 # sheet1 = Sheet(title = "Fossil Fuel Industries' Emission Reduction",

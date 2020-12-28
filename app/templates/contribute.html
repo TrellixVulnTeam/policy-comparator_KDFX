@@ -1,0 +1,15 @@
+<!--This file generates the contribution landing page template-->
+<!--Yann David | Last modified: 28.12-->
+{% extends "base.html" %}{% block title %} Contribute - {% endblock %}
+{% block head %} 
+{{ super() }}
+{% endblock %}
+{% block content %} 
+<div class="jumbotron jumbotron-fluid">
+  <div class = "container">
+      <h1>Hello {{ current_user.name }} {{ current_user.surname }}.</h1>
+      <legend class="border-bottom mb-4">Thanks for being a contributor!</legend>
+  </div>
+</div> 
+Soon here: stats on fact-sheets posted / option to add a new one...
+{% endblock %}

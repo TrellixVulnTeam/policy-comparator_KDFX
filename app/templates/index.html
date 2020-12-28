@@ -1,5 +1,5 @@
-<!--This file generates the homepage template-->
-<!--Yann David | Last modified: 24.10-->
+<!--This is the homepage template-->
+<!--Yann David | Last modified: 28.12-->
 {% extends "base.html" %}
 {% block head %} 
 {{ super() }}
@@ -11,7 +11,7 @@
   <h1 class="bannerContent">Environmental Policies Comparator</h1>
   <p class="bannerContent bannerSubtitle">Easy access to academic knowledge about environmental policies!</p>
     <div class="container bannerContent">
-      <input class="form-control searchBanner" type="text" placeholder="Select a Policy" aria-label="Search">
+      <input class="form-control searchBanner" type="text" placeholder="Find a Policy-Target Fact Sheet" aria-label="Search">
     </div>
 </div>
 
@@ -19,14 +19,14 @@
 <!-- Latest Publications -->
 <div class="container">
   <div class="latest-topic">
-    <h2>Latest Publications</h2>
+    <h2>Latest Policy-Target Fact Sheets</h2>
   </div>
   <div class="allTopics">
     <div class="rowCard">
       {% for sheet in latest %}
       <div class="cardPublication">
         <img class="imagePublication" src="static/images/{{ sheet.picture }}" alt="Pollution">
-      <h4 class="titlePublication">{{ sheet.title }}</h4>
+      <h4 class="titlePublication"><a href="{{ url_for('sheet', fact_id = sheet.id ) }}">{{ sheet.title }}</a></h4>
       <div class="abstractPublication">
         <p>{{ sheet.abstract }}</p>
       </div>
