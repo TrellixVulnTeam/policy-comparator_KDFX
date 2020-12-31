@@ -75,13 +75,24 @@ h4{
   }
   
 .searchBanner{
-    width: 570px;
+    width: 250px;
 }
 
 .bannerContent{
     display: flex;
     justify-content: center;
     margin-top: 15px;
+}
+
+.rowBanner{
+    display: flex;
+    align-items: center;
+    margin-right: 7px;
+    /* width: 70%; */
+}
+
+.borderlessResearch {
+    padding-top: 3px;
 }
 
 .bannerSubtitle{
@@ -94,6 +105,7 @@ h4{
 
 .allTopics{
     justify-content: center;
+    align-items: center;
     display: flex;
 }
 
@@ -115,9 +127,9 @@ h4{
 .imagePublication{
 /* max-width: 100%;
 position: center; */
-object-fit: cover;
-max-height: 175px;
-margin-bottom: 20px;
+    object-fit: cover;
+    height: 175px;
+    margin-bottom: 20px;
 }
 
 .titlePublication{

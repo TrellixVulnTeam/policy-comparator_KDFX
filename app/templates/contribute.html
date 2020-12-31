@@ -11,5 +11,23 @@
       <legend class="border-bottom mb-4">Thanks for being a contributor!</legend>
   </div>
 </div> 
-Soon here: stats on fact-sheets posted / option to add a new one...
+
+<!-- Creation of a new post -->
+<div class="container">
+  <button type="button" class="btn btn-light"> 
+    <a href="{{ url_for('new_fact_sheet') }}">
+      New Fact-Sheet
+    </a> </button>
+</div>
+
+<!-- Modification of posts -->
+<div class="container mt-4">
+  <h2 class="mb-4">Articles</h2>
+
+  <h2>Fact-Sheets</h2>
+  {% for sheet in usersheets %}
+  <h4 class="titlePublication"><a href="{{ url_for('update_fact_sheet', fact_id = sheet.id ) }}">{{ sheet.title }}</a></h4>
+  {% endfor %}
+</div>
+
 {% endblock %}

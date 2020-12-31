@@ -12,6 +12,6 @@ db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
-login_manager.login_message_category = 'danger'
+login_manager.login_message_category = 'danger' # Class of the message when need to login to access page
 
 from app import routes
