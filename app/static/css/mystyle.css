@@ -36,7 +36,7 @@ h4{
 }
 
 .navbarText{
-    font-weight: 800;
+    font-weight: 400;
 }
 
 .layer{
@@ -118,7 +118,7 @@ h4{
 .cardPublication{
     background-color: rgba(224, 232, 235, 0.733);
     width: 32%;
-    height: 350px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     /* justify-content: space-between; */
@@ -135,13 +135,15 @@ position: center; */
 .titlePublication{
     margin-left: 15px;
     margin-right: 15px;
-    margin-top: 0;
-    font-weight: 600;
+    margin-top: 20px;
+    font-weight: 500;
+    margin-bottom: 10px; 
 }
 
 .abstractPublication{
     margin-left: 15px;
     margin-right: 15px;
     font-size: 15px;
+    margin-top: 0px;
 }
 

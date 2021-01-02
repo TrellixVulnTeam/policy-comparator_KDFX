@@ -28,8 +28,8 @@
     <div class="rowCard">
       {% for sheet in latest %}
       <div class="cardPublication">
-        <img class="imagePublication" src="static/images/{{ sheet.picture }}" alt="Pollution">
-      <h4 class="titlePublication"><a href="{{ url_for('sheet', fact_id = sheet.id ) }}">{{ sheet.title }}</a></h4>
+        <!-- <img class="imagePublication" src="static/images/{{ sheet.picture }}" alt="Pollution"> -->
+      <h3 class="titlePublication"><a href="{{ url_for('sheet', fact_id = sheet.id ) }}">{{ sheet.title }}</a></h3>
       <div class="abstractPublication">
         <p>{{ sheet.abstract }}</p>
       </div>

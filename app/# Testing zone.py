@@ -10,6 +10,8 @@ contributor1 = Contributor(name="Yann",
 surname="David",email="yann.collindavid@gmail.com",
 password =  "test123")
 
+db.session.add(contributor1)
+
 contributor2= Contributor(name="Gael",
 surname="David",email="gdavid44@gmail.com",
 password =  "test123")
@@ -19,7 +21,8 @@ db.session.add(contributor2)
 
 db.session.commit()
 
-Contributor.query.first().password
+# Contributor.query.first().password
+contributor1 = Contributor.query.first()
 
 
 sheet1 = Sheet(creation = date.today(),
@@ -30,11 +33,8 @@ target = "CO2 Emissions",
 submit = False,
 publish=False)
 
-db.session.add(sheet1)
-db.session.commit()
 
-
-sheet1.contributor.append(contributor2)
+sheet1.contributor.append(contributor1)
 db.session.commit()
 
 Sheet.query.first().contributor
@@ -55,6 +55,10 @@ author2=Author(creation = date.today(), # Date of entry creation in database
     name = "John",
     email = "johndoe@mail.com")
 
+db.session.add(author1)
+
+db.session.add(author2)
+
 
 article1 = Article(
     creation = date.today(), # Date of entry creation in database
@@ -71,12 +75,11 @@ article1 = Article(
 db.session.add(article1)
 db.session.commit()
 
+article1.contributor.append(contributor1)
 
 result1 = Result(
     creation = date.today(), # Date of entry creation in database
     update = date.today(), # Date of entry update in database
-    
-
     # Content specific entries
     policy = "Carbon Tax",
     target = "CO2 Emissions" ,# target name
@@ -86,9 +89,9 @@ result1 = Result(
     estimate = 3.2, # Point estimate
     standardError = 0.96, # Standard error
     sampleSize = 2000 # Sample size
-
-
 )
+
+result1.contributor.append(contributor1)
 
 result2 = Result(
     creation = date.today(), # Date of entry creation in database
@@ -105,19 +108,22 @@ result2 = Result(
     standardError = 1.4, # Standard error
     sampleSize = 1500 # Sample size
 )
+result2.contributor.append(contributor1)
 
 db.session.add(result1)
 db.session.add(result2)
 db.session.commit()
 
-article1.contributor = contributor2
 
-Article.query.filter_by(title="The Importance of Being Earnest").first().result 
+Article.query.filter_by(title="The Importance of Being Earnest").first().author.append(author1) 
 
 db.session.commit()
 yann = Contributor.query.filter_by(name="Yann").first()
+yann.sheet.all()
 
 article1 = Article.query.first()
 
 sheet1 = Sheet.query.first()
+sheet1.policy + ' on ' + sheet1.target
 sheet1.contributor.append(yann)
+db.session.commit()

@@ -8,7 +8,7 @@
 <div class="jumbotron jumbotron-fluid">
   <div class = "container">
       <h1>Hello {{ current_user.name }} {{ current_user.surname }}.</h1>
-      <legend class="border-bottom mb-4">You can create a Policy-Target Fact-Sheet below</legend>
+      <legend class="border-bottom mb-4">You can {{ legend }} the Policy-Target Sheet below</legend>
   </div>
 </div> 
 
@@ -18,17 +18,7 @@
     <fieldset class="form-group">
       <!-- Title of the Fact-Sheet -->
       <div class="form-group">
-        {{ form.title.label(class="form-control-label") }}
-        {% if form.title.errors %}
-        {{ form.title(class="form-control form-control-lg is-invalid") }}
-        <div class="invalid-feedback">
-          {% for error in form.title.errors %}
-            <span>{{ error }}</span>
-          {% endfor %}
-        </div>
-      {% else %}
-        {{ form.title(class="form-control form-control-lg") }}
-      {% endif %} 
+        <h2>{{ title }}</h2>
       </div>
       <!-- Abstract -->
       <div class="form-group">
@@ -44,19 +34,19 @@
         {{ form.abstract(class="form-control form-control-lg") }}
       {% endif %} 
       </div>
-      <!-- Picture -->
-      <div class="form-group">
-        {{ form.picture.label(class="form-control-label") }}
-        {% if form.picture.errors %}
-          {% for error in form.picture.errors %}
-            <span class="text-danger">{{ error }}</span>
-          {% endfor %}
-        {% endif %}
-        {{ form.picture(class="form-control-file") }}
+      <!-- Submit -->
+      <div class="form-check container">
+        {{ form.submit(class="form-check-input")}}
+        {{ form.submit.label(class="form-check-label")}}
+      </div>
+      <!-- Publish -->
+      <div class="form-check container">
+        {{ form.publish(class="form-check-input")}}
+        {{ form.publish.label(class="form-check-label")}}
       </div>
     </fieldset>
     <div class="form-group">
-      {{ form.submit(class="btn btn-outline-info") }}
+      {{ form.save(class="form-check-input") }}
     </div>
   </form>
 </div>

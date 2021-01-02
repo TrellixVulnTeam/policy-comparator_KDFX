@@ -90,7 +90,7 @@ def get_latest(limit: int = 3):
     Sheet.abstract
     # , Sheet.picture,
     ).order_by(Sheet.id.desc(),
-    ).limit(limit).all()
+    ).filter_by(publish = True).limit(limit).all()
     return latest
 
 

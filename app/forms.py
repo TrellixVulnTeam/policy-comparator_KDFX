@@ -55,14 +55,7 @@ class UpdateAccountForm(FlaskForm):
               raise ValidationError('That email is already registered. Please choose another one.')
 
 class FactSheetForm(FlaskForm):
-    policy = StringField('Policy', validators=[DataRequired()])
-    target = StringField('Target', validators=[DataRequired()])
-    title = StringField('Title', validators=[DataRequired()])
     abstract = TextAreaField('Abstract', validators=[DataRequired()])
-    picture = FileField('Add a Picture', validators=[FileAllowed(['jpg','png'])])
     save = SubmitField('Save')
-    submit = SubmitField('Submit')
-    publish = SubmitField('Publish')
-    creation = DateField('Creation Date', validators=[DataRequired()])
-    update = DateField('Date Updated', validators=[DataRequired()])
-    result = SelectField('Select Results', choices=[], coerce=int)
+    submit = BooleanField('Submit')
+    publish = BooleanField('Publish')
