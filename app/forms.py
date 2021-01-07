@@ -1,7 +1,8 @@
-from flask_wtf import FlaskForm
+from flask_wtf import FlaskForm, Form
 from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
-from wtforms.fields.core import DateField, SelectField
+from wtforms import validators
+from wtforms.fields.core import DateField, FieldList,FormField, IntegerField, SelectField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
 from app.models import Sheet, Contributor, Author, Article, Result
 from flask_wtf.file import FileField, FileAllowed
@@ -59,3 +60,61 @@ class FactSheetForm(FlaskForm):
     save = SubmitField('Save')
     submit = BooleanField('Submit')
     publish = BooleanField('Publish')
+
+
+class AuthorForm(FlaskForm):
+    """Author SubForm
+
+    Creates the form to add each author
+    """
+    surname = StringField(
+        'Surname',
+        render_kw={'placeholder':"Surname"},
+        validators=[DataRequired()]
+    )
+    email = StringField(
+        'Email',
+        render_kw={'placeholder':"Email"},
+
+        validators=[DataRequired()]
+    )
+    firstname = StringField(
+        'First Name',
+        render_kw={'placeholder':"Name"},
+
+        validators=[DataRequired()]
+    )
+
+class ArticleForm(FlaskForm):
+    """Form to create the article in the database
+
+    """
+    title = StringField(
+        'Title',
+        render_kw={'placeholder':"Title"},
+        validators=[DataRequired()]
+    )
+
+    link =  StringField(
+        'Link to article',
+        render_kw={'placeholder':"Link"},
+        validators=[DataRequired()]
+    )
+
+    year = IntegerField(
+        'Publication Year',
+        render_kw={'placeholder':"Year"},
+        validators=[DataRequired()]
+    )
+    
+    journal = StringField(
+        'Journal',
+        render_kw={'placeholder':"Journal"},
+        validators=[DataRequired()]
+    )
+    authors = FieldList(
+        FormField(AuthorForm),
+        min_entries=1,
+        max_entries=20
+    )
+    submit = SubmitField('Save')

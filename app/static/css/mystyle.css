@@ -31,6 +31,12 @@ h1{
     font-size: 35px;
 }
 
+.hContribute{
+display: inline;
+}
+.buttonContribute{
+    display: inline;
+}
 h4{
     font-size: 20px;
 }
@@ -118,7 +124,7 @@ h4{
 .cardPublication{
     background-color: rgba(224, 232, 235, 0.733);
     width: 32%;
-    height: 200px;
+    height: 300px;
     display: flex;
     flex-direction: column;
     /* justify-content: space-between; */
@@ -140,10 +146,23 @@ position: center; */
     margin-bottom: 10px; 
 }
 
+.titlePublication:link{
+    color:black
+}
+
 .abstractPublication{
     margin-left: 15px;
     margin-right: 15px;
+    margin-bottom: 30px;    
     font-size: 15px;
-    margin-top: 0px;
+    overflow-y:scroll;
+    scrollbar-width: thin;
 }
 
+.remove{
+    font-size: 18px;
+}
+
+.is-hidden{
+   display: none!important;
+}

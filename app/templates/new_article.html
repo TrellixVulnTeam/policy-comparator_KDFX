@@ -1,0 +1,109 @@
+<!--This is the homepage template-->
+<!--Yann David | Last modified: 28.12-->
+{% extends "base.html" %}
+{% import "macro.html" as macro %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1>Hello {{ current_user.name }} {{ current_user.surname }}.</h1>
+    <legend class="border-bottom mb-4">You can add an Article to the database here.</legend>
+  </div>
+</div>
+
+<div class="container">
+  <form id="author-form" method="POST" role="form" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+
+      <!--General Article Informations -->
+      <h3>General Information</h3>
+      <!--Title -->
+      <div class="form-group">
+        {{ form.title.label(class="form-control-label") }}
+        {% if form.title.errors %}
+        {{ form.title(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.title.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.title(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+      <!-- Link -->
+      <div class="form-group">
+        {{ form.link.label(class="form-control-label") }}
+        {% if form.link.errors %}
+        {{ form.link(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.link.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.link(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+      <!-- Journal -->
+      <div class="form-group">
+        {{ form.journal.label(class="form-control-label") }}
+        {% if form.journal.errors %}
+        {{ form.journal(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.journal.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.journal(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+      <!-- Year -->
+      <div class="form-group">
+        {{ form.year.label(class="form-control-label") }}
+        {% if form.year.errors %}
+        {{ form.year(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.year.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.year(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+      <hr />
+      <!-- Adding Authors Part -->
+      <h3>Authors</h3>
+      <div class="subforms-container form-inline" id="subforms-container">
+        {% for subform in form.authors %}
+        {{ macro.render_author_form(subform, loop.index0) }}
+        {% endfor %}
+        {% if form.authors.errors %}
+        <ul class="invalid-feedback">
+          {% for error_field, errors in form.about_you.errors.items() %}
+            <li> <span>{{ error_field }}: {{ errors|join(', ') }}</span></li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      <div>
+        <a id="add" href="#">Add Author</a>
+      </div>
+    </fieldset>
+    <div class="form-group" type="submit">
+      {{ form.submit(class="form-check-input") }}
+    </div>
+  </form>
+  {{ macro.render_author_form(_template, '_') }}
+
+
+
+</div>
+
+
+{% endblock %}

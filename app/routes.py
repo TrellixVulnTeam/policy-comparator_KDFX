@@ -1,14 +1,15 @@
-from sys import path
+from sys import path, prefix
 from flask import render_template, url_for, flash, redirect, request, abort
 from flask_login.utils import login_required
 import secrets
 import os
 from app import app, db, bcrypt
 from app.models import Sheet, Contributor, Article, Author, Result, get_latest
-from app.forms import RegistrationForm, LoginForm, UpdateAccountForm, FactSheetForm 
+from app.forms import ArticleForm, AuthorForm, RegistrationForm, LoginForm, UpdateAccountForm, FactSheetForm 
 from flask_login import login_user, current_user, logout_user, login_required
 from PIL import Image
 from datetime import date # For post / update date
+from jinja2 import Template
 
 # Setting the first page options
 @app.route('/', methods=['GET'])
@@ -56,7 +57,7 @@ def login():
             login_user(contributor, remember=form.remember.data)
             next_page = request.args.get('next')
             flash('You are logged in', 'success')
-            return redirect(next_page) if next_page else redirect(url_for('account'))
+            return redirect(next_page) if next_page else redirect(url_for('contribute'))
 
         else:
             flash('Login Unsuccessful. Please check email and password and try again!', 'danger')
@@ -134,8 +135,11 @@ def account():
 @login_required
 def contribute():
     usersheet = Contributor.query.filter_by(id = current_user.id).first().sheet.all()
+    userarticle = Contributor.query.filter_by(id = current_user.id).first().article.all()
+
     return render_template('/contribute.html', 
-    usersheets=usersheet
+    usersheets=usersheet,
+    userarticle = userarticle
     )
 
 @app.route('/factsheet/<int:fact_id>')
@@ -144,7 +148,7 @@ def sheet(fact_id):
     return render_template('fact.html', sheet=sheet)
 
 # Page to update factsheet
-@app.route("/contribute/<int:fact_id>/edit", methods=['GET','POST'])
+@app.route("/contribute/editsheet/<int:fact_id>", methods=['GET','POST'])
 @login_required
 def edit_fact_sheet(fact_id):
     sheet = Sheet.query.get_or_404(fact_id)
@@ -169,7 +173,8 @@ def edit_fact_sheet(fact_id):
         else:
             sheet.creation = date.today()
         db.session.commit()
-        flash('Your Policy-Target Sheet has been submitted. Thank you!', 'success')            
+        flash('Your Policy-Target Sheet has been submitted. Thank you!', 'success') 
+                   
         return redirect(url_for('contribute'))
 
     elif request.method == 'GET':
@@ -184,3 +189,89 @@ def edit_fact_sheet(fact_id):
                             policy = policy )
 
 
+@app.route("/contribute/newarticle", methods=['GET','POST'])
+@login_required
+def new_article():
+    article_form = ArticleForm()
+    author_subform = AuthorForm(prefix='authors-_-')
+    if article_form.validate_on_submit():
+        article = Article(
+            creation = date.today(),
+            update = date.today(),
+            title = article_form.title.data,
+            link = article_form.link.data,
+            year = article_form.year.data,
+            journal = article_form.journal.data
+        )
+        db.session.add(article)
+        for author in article_form.authors.data:
+            new_author = Author(
+                creation = date.today(),
+                update = date.today(),
+                name = author['firstname'],
+                surname = author['surname'],
+                email = author['email']
+            )
+            article.author.append(new_author)
+            article.contributor.append(current_user)
+        db.session.commit()   
+        flash('Your Article Sheet has been submitted. Thank you!', 'success')            
+        return redirect(url_for('contribute'))
+
+    return render_template('/new_article.html',
+            form = article_form,
+            _template = author_subform
+    )
+
+@app.route("/contribute/editarticle/<int:article_id>", methods=['GET','POST'])
+@login_required
+def edit_article(article_id):
+    article_db = Article.query.get_or_404(article_id)
+    article_form = ArticleForm()
+    author_subform = AuthorForm(prefix='authors-_-')
+    if article_form.validate_on_submit():
+        article_db.creation = article_db.creation
+        article_db.update = date.today()
+        article_db.title = article_form.title.data
+        article_db.link = article_form.link.data
+        article_db.year = article_form.year.data
+        article_db.journal = article_form.journal.data
+        authors_form =  article_form.authors.data
+        authors_db = article_db.author
+        # Adding new author
+        attributes_forms = [[author['firstname'], author['surname'],author['email']]for author in authors_form]
+        attributes_db = [[authordb.name, authordb.surname,authordb.email] for authordb in authors_db ]
+        for attribute in attributes_forms:
+            if attribute not in attributes_db:
+                    new_author = Author(
+                        creation = date.today(),
+                        update = date.today(),
+                        name = attribute[0],
+                        surname = attribute[1],
+                        email = attribute[2]
+                    )
+                    article_db.author.append(new_author)
+        # Deleting reoved author
+        for attribute in attributes_db:
+            if attribute not in attributes_forms:
+                delete_author = Author.query.filter_by(name = attribute[0], surname=attribute[1], email=attribute[2]).first()
+                article_db.author.remove(delete_author)
+        # Appending contributor
+        article_db.contributor.append(current_user)
+        db.session.commit()   
+        flash('Your Article Sheet has been updated. Thank you!', 'success')            
+        return redirect(url_for('contribute'))
+    elif request.method == 'GET':
+        article_form.title.data = article_db.title
+        article_form.link.data = article_db.link
+        article_form.journal.data = article_db.journal
+        article_form.year.data = article_db.year
+        authors = [{'firstname': author.name, 'surname':author.surname, 'email':author.email} 
+                    for author in article_db.author]
+        for author in authors:
+            article_form.authors.append_entry(author)
+
+    return render_template('/new_article.html',
+            form = article_form,
+            _template = author_subform
+    )

@@ -1,6 +1,7 @@
 # Testing zone
-from app import db
-db.create_all()
+from app.forms import AuthorForm
+from app import db, app
+# db.create_all()
 
 from app.models import Sheet, Contributor, Article, Author, Result
 from datetime import date
@@ -29,9 +30,6 @@ sheet1 = Sheet(creation = date.today(),
 update = date.today(),title = "First Sheet",
 abstract = "This is the very first sheet",
 policy ="Carbon Tax",
-target = "CO2 Emissions",
-submit = False,
-publish=False)
 
 
 sheet1.contributor.append(contributor1)
@@ -127,3 +125,31 @@ sheet1 = Sheet.query.first()
 sheet1.policy + ' on ' + sheet1.target
 sheet1.contributor.append(yann)
 db.session.commit()
+
+# Flask migrate part
+from flask_script import Manager
+from flask_migrate import Migrate, MigrateCommand
+
+migrate = Migrate(app, db)
+manager = Manager(app)
+
+manager.add_command('db', MigrateCommand)
+
+if __name__ == 'main':
+    manager.run()
+
+article0 = Article.query.first()
+article_db = Article.query.get_or_404(article1.id)
+authors = [{'firstname': author.name, 'surname':author.surname, 'email':author.email} for author in article_db.author]
+
+author = article_db.author[0]
+
+zip(["firstname","surname","email"], author1)
+
+{print(zip(["firstname","surname","email"], author)) for author in article_db.author}
+
+article1 = Article.query.filter_by(title = 'Test du 6 janvier').first()
+
+for author in article1.author:
+    print(author.name, author.surname, author.email)
+len(article0.author)

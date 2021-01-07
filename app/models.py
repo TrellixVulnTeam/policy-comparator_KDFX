@@ -69,7 +69,7 @@ class Sheet(db.Model):
     # Many-to-many relation created with contributors above
 
     title = db.Column(db.String(120), unique=True, nullable=False)
-    abstract = db.Column(db.Text, nullable=False)
+    abstract = db.Column(db.Text, nullable=False, default="This sheet has not been edited")
     # picture = db.Column(db.String, nullable=False)
     policy = db.Column(db.String, nullable=False)
     target = db.Column(db.String, nullable=False)

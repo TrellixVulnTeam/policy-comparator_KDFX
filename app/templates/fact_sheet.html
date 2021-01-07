@@ -1,16 +1,16 @@
 <!--This file generates Fact-Sheet Creation template-->
 <!--Yann David | Last modified: 24.10-->
 {% extends "base.html" %}{% block title %} Contribute - {% endblock %}
-{% block head %} 
+{% block head %}
 {{ super() }}
 {% endblock %}
-{% block content %} 
+{% block content %}
 <div class="jumbotron jumbotron-fluid">
-  <div class = "container">
-      <h1>Hello {{ current_user.name }} {{ current_user.surname }}.</h1>
-      <legend class="border-bottom mb-4">You can {{ legend }} the Policy-Target Sheet below</legend>
+  <div class="container">
+    <h1>Hello {{ current_user.name }} {{ current_user.surname }}.</h1>
+    <legend class="border-bottom mb-4">You can {{ legend }} the Policy-Target Sheet below</legend>
   </div>
-</div> 
+</div>
 
 <div class="container">
   <form method="POST" action="" enctype="multipart/form-data">
@@ -27,12 +27,12 @@
         {{ form.abstract(class="form-control form-control-lg is-invalid") }}
         <div class="invalid-feedback">
           {% for error in form.abstract.errors %}
-            <span>{{ error }}</span>
+          <span>{{ error }}</span>
           {% endfor %}
         </div>
-      {% else %}
+        {% else %}
         {{ form.abstract(class="form-control form-control-lg") }}
-      {% endif %} 
+        {% endif %}
       </div>
       <!-- Submit -->
       <div class="form-check container">
