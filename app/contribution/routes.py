@@ -2,7 +2,7 @@ import os
 from flask import Blueprint
 from flask import render_template, url_for, flash, redirect, request#, abort
 # from flask_login.utils import login_required # Normally included below, commented to check it works
-from app import app, db, bcrypt
+from app import db, bcrypt
 from app.models import Sheet, Contributor, Article, Author
 from app.contribution.forms import ArticleForm, AuthorForm, FactSheetForm 
 from flask_login import  current_user,  login_required

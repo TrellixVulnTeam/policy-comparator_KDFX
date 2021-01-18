@@ -1,7 +1,7 @@
 import os
-from flask import Blueprint
+from flask import  Blueprint
 from flask import render_template
-from app import app, db, bcrypt
+from app import  db, bcrypt
 from app.models import get_latest
 
 main = Blueprint('main', __name__)
