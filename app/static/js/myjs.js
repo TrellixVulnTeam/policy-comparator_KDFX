@@ -65,6 +65,7 @@ function removeForm() {
     adjustIndices(removedIndex);
 }
 
+// Function that clears the page from empty form row when loading page
 function clear(){
     if (document.getElementById('authors-0-firstname').value === ''){
         var form = document.getElementById('authors-0-form')

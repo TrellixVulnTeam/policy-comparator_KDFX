@@ -1,3 +1,4 @@
+# In this script i'm just testing things
 # Testing zone
 from app.forms import AuthorForm
 from app import db, app

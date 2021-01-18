@@ -141,6 +141,7 @@ class Result(db.Model):
     # Content specific entries
     policy = db.Column(db.String, nullable=False) # policy name 
     target = db.Column(db.String, nullable=False) # target name
+    # unit = db.Column(db.String, nullable=False) # target unit
     method = db.Column(db.String, nullable=False) # identification method
     country = db.Column(db.String, nullable=False) # country of study
     yearPolicy = db.Column(db.String, nullable=False) # year of programm implementation

@@ -25,7 +25,7 @@
     <header>
       <nav class="navbar fixed-top navbar-toggleable-xl navbar-light navbarText">
         <div class="container">
-          <a class="navbar-brand ml-auto navbarText" href="{{ url_for('index') }}">
+          <a class="navbar-brand ml-auto navbarText" href="{{ url_for('main.index') }}">
             <i class="far fa-chart-bar"></i> 
             Comparator
           </a>
@@ -35,7 +35,7 @@
                 <a class="nav-link navbarText" href="#">Methodology</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link navbarText" href="{{ url_for('project') }}">About</a>
+                <a class="nav-link navbarText" href="{{ url_for('main.project') }}">About</a>
               </li>
             </ul>
           </div>
@@ -43,13 +43,13 @@
           <div class="navbar-collapse collapse ml-auto">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link navbarText" href="{{ url_for('contribute') }}">Contribute</a>
+                <a class="nav-link navbarText" href="{{ url_for('contribution.contribute') }}">Contribute</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link navbarText" href="{{ url_for('account') }}">Account</a>
+                <a class="nav-link navbarText" href="{{ url_for('users.account') }}">Account</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link navbarText" href="{{ url_for('logout') }}">Log out</a>
+                <a class="nav-link navbarText" href="{{ url_for('users.logout') }}">Log out</a>
               </li>
             </ul>
           </div>

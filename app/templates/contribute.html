@@ -17,16 +17,16 @@
   <div>
     <h2 class="mb-4 hContribute">Articles </h2>
     <button type="button" class="btn btn-primary buttonContribute">
-      <a href="{{ url_for('new_article') }}">New</a>
+      <a href="{{ url_for('contribution.new_article') }}">New</a>
     </button></div>
 
   {% for article in userarticle %}
-  <h4 class="titlePublication"><a href="{{ url_for('edit_article', article_id = article.id ) }}">{{ article.title }}</a></h4>
+  <h4 class="titlePublication"><a href="{{ url_for('contribution.edit_article', article_id = article.id ) }}">{{ article.title }}</a></h4>
   {% endfor %}
 
   <h2>Fact-Sheets</h2>
   {% for sheet in usersheets %}
-  <h4 class="titlePublication"><a href="{{ url_for('edit_fact_sheet', fact_id = sheet.id ) }}">{{ sheet.title }}</a></h4>
+  <h4 class="titlePublication"><a href="{{ url_for('contribution.edit_fact_sheet', fact_id = sheet.id ) }}">{{ sheet.title }}</a></h4>
   {% endfor %}
 </div>
 
