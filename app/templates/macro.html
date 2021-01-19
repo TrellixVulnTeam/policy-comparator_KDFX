@@ -15,7 +15,7 @@
   <div class="form-group ">
         {{ subform.firstname.label(class_="form-control-label") }}
         {% if subform.firstname.errors %}
-        {{ form.subform.firstname(class_="form-control form-control-lg is-invalid") }}
+        {{ subform.firstname(class_="form-control form-control-lg is-invalid") }}
         <div class="invalid-feedback">
           {% for error in subform.firstname.errors %}
           <span>{{ error }}</span>
@@ -29,7 +29,7 @@
     <div class="form-group">
         {{ subform.surname.label(class_="form-control-label")  }}
         {% if subform.surname.errors %}
-        {{ form.subform.surname(class_="form-control form-control-lg is-invalid") }}
+        {{ subform.surname(class_="form-control form-control-lg is-invalid") }}
         <div class="invalid-feedback">
           {% for error in subform.surname.errors %}
           <span>{{ error }}</span>
@@ -43,7 +43,7 @@
     <div class="form-group">
             {{ subform.email.label(class_="form-control-label") }}
             {% if subform.email.errors %}
-            {{ form.subform.email(class_="form-control form-control-lg is-invalid") }}
+            {{ subform.email(class_="form-control form-control-lg is-invalid") }}
             <div class="invalid-feedback">
               {% for error in subform.email.errors %}
               <span>{{ error }}</span>

@@ -85,7 +85,7 @@
         {% endfor %}
         {% if form.authors.errors %}
         <ul class="invalid-feedback">
-          {% for error_field, errors in form.about_you.errors.items() %}
+          {% for error_field, errors in form.errors.items() %}
             <li> <span>{{ error_field }}: {{ errors|join(', ') }}</span></li>
         {% endfor %}
         </ul>
