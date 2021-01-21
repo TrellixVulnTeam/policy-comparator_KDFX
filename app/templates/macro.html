@@ -1,18 +1,19 @@
+
+{% macro render_author_form(subform, index) %}
 {# Render author table-form.
 
-    This macro is intended to render both regular author subforms (received from the
-    server) and the template form used to dynamically add more forms.
-    
-    Arguments:
-        - subform: Form object to render
-        - index: Index of the form. For proper subforms rendered in the form loop,
-                 this should match `loop.index0`, and for the template it should be
-                 '_'
+  This macro is intended to render both regular author subforms (received from the
+  server) and the template form used to dynamically add more forms.
+  
+  Arguments:
+      - subform: Form object to render
+      - index: Index of the form. For proper subforms rendered in the form loop,
+               this should match `loop.index0`, and for the template it should be
+               '_'
 #}
-{% macro render_author_form(subform, index) %}
-<div id="authors-{{ index }}-form" class="{% if index != '_' %} subform {% else %} is-hidden {% endif %} form-inline" data-index="{{ index }}"> 
+<div id="authors-{{ index }}-form" class="{% if index != '_' %} subform {% else %} is-hidden {% endif %}" data-index="{{ index }}"> 
   {{ subform.hidden_tag() }}
-  <div class="form-group ">
+  <div class="form-group">
         {{ subform.firstname.label(class_="form-control-label") }}
         {% if subform.firstname.errors %}
         {{ subform.firstname(class_="form-control form-control-lg is-invalid") }}
@@ -53,6 +54,167 @@
             {{ subform.email(class_="form-control form-control-lg") }}
             {% endif %}
     </div>
-    <button type="button" class="btn btn-outline-danger remove">Remove</button>
+    <button type="button" class="remove btn btn-outline-danger">Remove</button>
+</div>
+{% endmacro %}
+
+{% macro render_result_form(subform, index) %}
+{# Renders result form.
+
+  This macro is intended to render both regular results subforms (received from the
+  server) and the template form used to dynamically add more forms.
+  
+  Arguments:
+      - subform: Form object to render
+      - index: Index of the form. For proper subforms rendered in the form loop,
+               this should match `loop.index0`, and for the template it should be
+               '_'
+#}
+
+<div id="list-{{ index }}-form" class="{% if index != '_' %} subform {% else %} is-hidden {% endif %}" data-index="{{ index }}"> 
+  {{ subform.hidden_tag() }}
+  <div class="form-group ">
+        {{ subform.policy.label(class="form-control-label") }}
+        {% if subform.policy.errors %}
+        {{ subform.policy(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in subform.policy.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ subform.policy(class="form-control form-control-lg") }}
+        {% endif %}
+    </div>
+
+    <div class="form-group ">
+      {{ subform.policyUnit.label(class="form-control-label") }}
+      {% if subform.policyUnit.errors %}
+      {{ subform.policyUnit(class="form-control form-control-lg is-invalid") }}
+      <div class="invalid-feedback">
+        {% for error in subform.policyUnit.errors %}
+        <span>{{ error }}</span>
+        {% endfor %}
+      </div>
+      {% else %}
+      {{ subform.policyUnit(class="form-control form-control-lg") }}
+      {% endif %}
+    </div>
+    
+
+    <div class="form-group">
+        {{ subform.target.label(class="form-control-label")  }}
+        {% if subform.target.errors %}
+        {{ subform.target(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in subform.target.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ subform.target(class="form-control form-control-lg") }}
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+      {{ subform.targetUnit.label(class="form-control-label")  }}
+      {% if subform.targetUnit.errors %}
+      {{ subform.targetUnit(class="form-control form-control-lg is-invalid") }}
+      <div class="invalid-feedback">
+        {% for error in subform.targetUnit.errors %}
+        <span>{{ error }}</span>
+        {% endfor %}
+      </div>
+      {% else %}
+      {{ subform.targetUnit(class="form-control form-control-lg") }}
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      {{ subform.method.label(class="form-control-label")  }}
+      {% if subform.method.errors %}
+      {{ subform.method(class="form-control form-control-lg is-invalid") }}
+      <div class="invalid-feedback">
+        {% for error in subform.method.errors %}
+        <span>{{ error }}</span>
+        {% endfor %}
+      </div>
+      {% else %}
+      {{ subform.method(class="form-control form-control-lg") }}
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      {{ subform.country.label(class="form-control-label")  }}
+      {% if subform.country.errors %}
+      {{ subform.country(class="form-control form-control-lg is-invalid") }}
+      <div class="invalid-feedback">
+        {% for error in subform.country.errors %}
+        <span>{{ error }}</span>
+        {% endfor %}
+      </div>
+      {% else %}
+      {{ subform.country(class="form-control form-control-lg") }}
+      {% endif %}
+    </div>
+
+
+    <div class="form-group">
+      {{ subform.year.label(class="form-control-label")  }}
+      {% if subform.year.errors %}
+      {{ subform.year(class="form-control form-control-lg is-invalid") }}
+      <div class="invalid-feedback">
+        {% for error in subform.year.errors %}
+        <span>{{ error }}</span>
+        {% endfor %}
+      </div>
+      {% else %}
+      {{ subform.year(class="form-control form-control-lg") }}
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      {{ subform.estimate.label(class="form-control-label")  }}
+      {% if subform.estimate.errors %}
+      {{ subform.estimate(class="form-control form-control-lg is-invalid") }}
+      <div class="invalid-feedback">
+        {% for error in subform.estimate.errors %}
+        <span>{{ error }}</span>
+        {% endfor %}
+      </div>
+      {% else %}
+      {{ subform.estimate(class="form-control form-control-lg") }}
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      {{ subform.standardError.label(class="form-control-label")  }}
+      {% if subform.standardError.errors %}
+      {{ subform.standardError(class="form-control form-control-lg is-invalid") }}
+      <div class="invalid-feedback">
+        {% for error in subform.standardError.errors %}
+        <span>{{ error }}</span>
+        {% endfor %}
+      </div>
+      {% else %}
+      {{ subform.standardError(class="form-control form-control-lg") }}
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      {{ subform.sampleSize.label(class="form-control-label")  }}
+      {% if subform.sampleSize.errors %}
+      {{ subform.sampleSize(class="form-control form-control-lg is-invalid") }}
+      <div class="invalid-feedback">
+        {% for error in subform.sampleSize.errors %}
+        <span>{{ error }}</span>
+        {% endfor %}
+      </div>
+      {% else %}
+      {{ subform.sampleSize(class="form-control form-control-lg") }}
+      {% endif %}
+    </div>
+
+    <button type="button" class="remove btn btn-outline-danger">Remove</button>
 </div>
 {% endmacro %}

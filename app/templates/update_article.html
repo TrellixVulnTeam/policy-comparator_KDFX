@@ -84,13 +84,13 @@
         {% for subform in form.authors %}
         {{ macro.render_author_form(subform, loop.index0) }}
         {% endfor %}
-        {% if form.authors.errors %}
+        <!-- {% if form.authors.errors %}
         <ul class="invalid-feedback">
           {% for error_field, errors in form.about_you.errors.items() %}
             <li> <span>{{ error_field }}: {{ errors|join(', ') }}</span></li>
         {% endfor %}
         </ul>
-        {% endif %}
+        {% endif %} -->
       </div>
       <div>
         <a id="add" href="#">Add Author</a>

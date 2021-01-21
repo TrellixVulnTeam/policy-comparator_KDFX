@@ -141,11 +141,12 @@ class Result(db.Model):
     # Content specific entries
     policy = db.Column(db.String, nullable=False) # policy name 
     target = db.Column(db.String, nullable=False) # target name
-    # unit = db.Column(db.String, nullable=False) # target unit
+    policyUnit = db.Column(db.String, nullable=True, default="TBD") # policy unit
+    targetUnit = db.Column(db.String, nullable=True, default="TBD") # target unit
     method = db.Column(db.String, nullable=False) # identification method
     country = db.Column(db.String, nullable=False) # country of study
-    yearPolicy = db.Column(db.String, nullable=False) # year of programm implementation
+    yearPolicy = db.Column(db.Integer, nullable=False) # year of programm implementation
     estimate = db.Column(db.Float, nullable=False) # Point estimate
     standardError = db.Column(db.Float, nullable=False) # Standard error
-    sampleSize = db.Column(db.Float, nullable=False) # Sample size
+    sampleSize = db.Column(db.Integer, nullable=False) # Sample size
 

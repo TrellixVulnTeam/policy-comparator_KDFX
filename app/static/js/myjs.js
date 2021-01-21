@@ -22,6 +22,7 @@ function adjustIndices(removedIndex) {
         if (index < removedIndex) {
             // Skip
             return true;
+
         }
 
         // This will replace the original index with the new one
@@ -56,82 +57,171 @@ function adjustIndices(removedIndex) {
  * Remove a form.
  */
 function removeForm() {
-    var $removedForm = $(this).closest('.subform');
-    var removedIndex = parseInt($removedForm.data('index'));
-
-    $removedForm.remove();
-
-    // Update indices
-    adjustIndices(removedIndex);
+    // If we're in an author form
+    if (document.getElementById('authors-_-form')){
+        var $removedForm = $(this).closest('.subform');
+        var removedIndex = parseInt($removedForm.data('index'));
+        $removedForm.remove();
+        // Update indices
+        adjustIndices(removedIndex);
+        // Then checks if we're in a result form
+    } else if (document.getElementById('list-_-form')){
+        var $removedForm = $(this).closest('.subform');
+        var removedIndex = parseInt($removedForm.data('index'));
+        $removedForm.remove();
+        // Update indices
+        adjustIndices(removedIndex);
+    }
 }
 
 // Function that clears the page from empty form row when loading page
 function clear(){
-    if (document.getElementById('authors-0-firstname').value === ''){
-        var form = document.getElementById('authors-0-form')
-        var removedIndex = parseInt(form.index);
-        form.remove();
-        adjustIndices(removedIndex);
+    // Firstly checks if we are with an author form 
+    if (document.getElementById('authors-_-form')){
+        // Then checks if the first form is empty
+        if (document.getElementById('authors-0-firstname').value === ''){
+            var form = document.getElementById('authors-0-form')
+            var removedIndex = parseInt(form.index);
+            // Deletes it if empty
+            form.remove();
+            adjustIndices(removedIndex);
+        }
+        // Then checks if we're in a result form
+    } else if (document.getElementById('list-_-form')){
+        // Once again, if the first form is empty, it is deleted
+        if (document.getElementById('list-0-policy').value === ''){
+            var form = document.getElementById('list-0-form')
+            var removedIndex = parseInt(form.index);
+            form.remove();
+            adjustIndices(removedIndex);
+        }
     }
+    
 }
+
 
 /**
  * Add a new form.
  */
 function addForm() {
-    var $templateForm = $('#authors-_-form');
-
-    if ($templateForm.length === 0) {
-        console.log('[ERROR] Cannot find template');
-        return;
-    }
-
-    // Get Last index
-    var $lastForm = $('.subform').last();
-
-    var newIndex = 0;
-
-    if ($lastForm.length > 0) {
-        newIndex = parseInt($lastForm.data('index')) + 1;
-    }
-
-    // Maximum of 20 subforms
-    if (newIndex >= 20) {
-        console.log('[WARNING] Reached maximum number of elements');
-        return;
-    }
-
-    // Add elements
-    var $newForm = $templateForm.clone();
-
-    $newForm.attr('id', replaceTemplateIndex($newForm.attr('id'), newIndex));
-    $newForm.data('index', newIndex);
-
-    $newForm.find('label, input, select, textarea').each(function(idx) {
-        var $item = $(this);
-
-        if ($item.is('label')) {
-            // Update labels
-            $item.attr('for', replaceTemplateIndex($item.attr('for'), newIndex));
+    if (document.getElementById('authors-_-form')){
+        var $templateForm = $('#authors-_-form');
+        if ($templateForm.length === 0) {
+            console.log('[ERROR] Cannot find template');
             return;
         }
 
-        // Update other fields
-        $item.attr('id', replaceTemplateIndex($item.attr('id'), newIndex));
-        $item.attr('name', replaceTemplateIndex($item.attr('name'), newIndex));
-    });
+        // Get Last index
+        var $lastForm = $('.subform').last();
+        var newIndex = 0;
+        if ($lastForm.length > 0) {
+            newIndex = parseInt($lastForm.data('index')) + 1;
+        } else {
+            newIndex = 0
+        }
 
-    // Append
-    $('#subforms-container').append($newForm);
-    $newForm.addClass('subform');
-    $newForm.removeClass('is-hidden');
+        // Maximum of 20 subforms
+        if (newIndex >= 20) {
+            console.log('[WARNING] Reached maximum number of elements');
+            return;
+        }
 
-    $newForm.find('.remove').click(removeForm);
+        // Add elements
+        var $newForm = $templateForm.clone();
+        $newForm.attr('id', replaceTemplateIndex($newForm.attr('id'), newIndex));
+        $newForm.data('index', newIndex);
+        $newForm.find('label, input, select, textarea').each(function(idx) {
+            var $item = $(this);
+
+            if ($item.is('label')) {
+                // Update labels
+                $item.attr('for', replaceTemplateIndex($item.attr('for'), newIndex));
+                return;
+            }
+
+            // Update other fields
+            $item.attr('id', replaceTemplateIndex($item.attr('id'), newIndex));
+            $item.attr('name', replaceTemplateIndex($item.attr('name'), newIndex));
+        });
+        // Append
+        $('#subforms-container').append($newForm);
+        $newForm.addClass('subform');
+        $newForm.removeClass('is-hidden');
+        $newForm.find('.remove').click(removeForm);
+
+       
+
+
+    } else if (document.getElementById('list-_-form')){
+        var $templateForm = $('#list-_-form');
+
+        if ($templateForm.length === 0) {
+            console.log('[ERROR] Cannot find template');
+            return;
+        }
+
+        // Get Last index
+        var $lastForm = $('.subform').last();
+
+        var newIndex = 0;
+
+        if ($lastForm.length > 0) {
+            newIndex = parseInt($lastForm.data('index')) + 1;
+        } else {
+            newIndex = 0;
+        }
+
+        // Maximum of 20 subforms
+        if (newIndex >= 20) {
+            console.log('[WARNING] Reached maximum number of elements');
+            return;
+        }
+
+        // Add elements
+        var $newForm = $templateForm.clone();
+
+        $newForm.attr('id', replaceTemplateIndex($newForm.attr('id'), newIndex));
+        $newForm.data('index', newIndex);
+
+        $newForm.find('label, input, select, textarea').each(function(idx) {
+            var $item = $(this);
+
+            if ($item.is('label')) {
+                // Update labels
+                $item.attr('for', replaceTemplateIndex($item.attr('for'), newIndex));
+                return;
+            }
+
+            // Update other fields
+            $item.attr('id', replaceTemplateIndex($item.attr('id'), newIndex));
+            $item.attr('name', replaceTemplateIndex($item.attr('name'), newIndex));
+        });
+
+        // Append
+        $('#subforms-container').append($newForm);
+        $newForm.addClass('subform');
+        $newForm.removeClass('is-hidden');
+        $newForm.find('.remove').click(removeForm);
+
+        
+    }
+
+    
 }
+
+function flashes() {
+    // Get the snackbar DIV
+    var x = document.getElementById("snackbar");
+    // Add the "show" class to DIV
+    x.className = "show";
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  } 
 
 
 $(document).ready(function() {
-    clear();
-    $('#add').click(addForm);
-    $('.remove').click(removeForm);
+        clear(); // Clears the input at origin
+        $('.remove').click(removeForm); // Removes undesired input
+        $('#add').click(addForm); // Adds input to form
+        flashes();
 });

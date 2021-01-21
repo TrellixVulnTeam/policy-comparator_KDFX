@@ -3,8 +3,8 @@ from flask import Blueprint
 from flask import render_template, url_for, flash, redirect, request#, abort
 # from flask_login.utils import login_required # Normally included below, commented to check it works
 from app import db, bcrypt
-from app.models import Sheet, Contributor, Article, Author
-from app.contribution.forms import ArticleForm, AuthorForm, FactSheetForm 
+from app.models import Result, Sheet, Contributor, Article, Author
+from app.contribution.forms import ArticleForm, AuthorForm, FactSheetForm, ListResultForm, ResultForm 
 from flask_login import  current_user,  login_required
 from datetime import date # For post / update date
 
@@ -65,7 +65,7 @@ def edit_fact_sheet(fact_id):
                             policy = policy )
 
 
-@contribution.route("/contribute/newarticle", methods=['GET','POST'])
+@contribution.route("/contribute/article/new", methods=['GET','POST'])
 @login_required
 def new_article():
     article_form = ArticleForm()
@@ -91,15 +91,18 @@ def new_article():
             article.author.append(new_author)
             article.contributor.append(current_user)
         db.session.commit()   
+        article_id = article.id
         flash('Your Article Sheet has been submitted. Thank you!', 'success')            
-        return redirect(url_for('contribution.contribute'))
+        return redirect(url_for('contribution.edit_policy_target', article_id = article_id))
 
     return render_template('/new_article.html',
             form = article_form,
             _template = author_subform
     )
 
-@contribution.route("/contribute/editarticle/<int:article_id>", methods=['GET','POST'])
+
+# Modification of an article
+@contribution.route("/contribute/article/edit/<int:article_id>", methods=['GET','POST'])
 @login_required
 def edit_article(article_id):
     article_db = Article.query.get_or_404(article_id)
@@ -135,8 +138,8 @@ def edit_article(article_id):
         # Appending contributor
         article_db.contributor.append(current_user)
         db.session.commit()   
-        flash('Your Article Sheet has been updated. Thank you!', 'success')            
-        return redirect(url_for('contribution.contribute'))
+        flash('Your Article has been updated. Thank you!', 'success')            
+        return redirect(url_for('contribution.edit_policy_target', article_id = article_id))
     elif request.method == 'GET':
         article_form.title.data = article_db.title
         article_form.link.data = article_db.link
@@ -150,4 +153,112 @@ def edit_article(article_id):
     return render_template('/new_article.html',
             form = article_form,
             _template = author_subform
+    )
+
+
+# Adding policy-target to an article
+@contribution.route("/contribute/article/policy-target/<int:article_id>",
+                    methods=['GET','POST'])
+@login_required
+def edit_policy_target(article_id):
+    article_db = Article.query.get_or_404(article_id)
+    result_list = ListResultForm()
+    result_subform = ResultForm(prefix='list-_-')
+    if result_list.validate_on_submit():
+        results_form =  result_list.list.data
+        results_db = article_db.result
+        # Adding new policy-target result
+        # Loading the list of policy-targets in the form
+        attributes_forms = [[result['policy'],result['policyUnit'], 
+                            result['target'],result['targetUnit'],
+                            result['method'], result['country'],
+                            result['year'], result['estimate'],
+                            result['standardError'], result['sampleSize']] for result in results_form]
+        # Loading the list of policy-targets in the DATABASE for this article
+        attributes_db = [[resultdb.policy,resultdb.policyUnit,
+                          resultdb.target, resultdb.targetUnit,
+                          resultdb.method, resultdb.country,
+                          resultdb.yearPolicy, resultdb.estimate,
+                          resultdb.standardError, resultdb.sampleSize] for resultdb in results_db ]
+
+        for attribute in attributes_forms:
+            if attribute not in attributes_db:
+                # Checking if the sheet for this policy-target exists
+                sheet_name = attribute[0] + ' on ' + attribute[2]
+                sheet = Sheet.query.filter_by(title = sheet_name).first()
+                if not sheet:
+                    # If it doesn't exist I create it
+                    new_sheet = Sheet(
+                        creation = date.today(),
+                        update = date.today(),  
+                        title = sheet_name, 
+                        policy = attribute[0],
+                        target = attribute[2],
+                        submit = 0,
+                        publish =0
+                        )
+                    db.session.add(new_sheet)
+                    new_sheet.contributor.append(current_user)
+                    db.session.commit()
+                    sheet_id = Sheet.query.filter_by(title = sheet_name).first().id
+                else :
+                    sheet_id = sheet.id
+
+                # Now that I have the sheet id I can create the result entry in db
+                new_result = Result(
+                        creation = date.today(),
+                        update = date.today(),
+                        sheet_id = sheet_id,
+                        article_id = article_db.id,
+                        # Content specific entries
+                        policy = attribute[0], # policy name 
+                        policyUnit = attribute[1], # policy name 
+                        target =  attribute[2], # target name
+                        targetUnit = attribute[3], # target unit
+                        method = attribute[4], # identification method
+                        country = attribute[5], # country of study
+                        yearPolicy = attribute[6], # year of programm implementation
+                        estimate = float(attribute[7]), # Point estimate
+                        standardError = float(attribute[8]), # Standard error
+                        sampleSize = attribute[9] # Sample size
+                    )
+                db.session.add(new_result)
+        # Deleting removed Result
+        for attribute in attributes_db:
+            if attribute not in attributes_forms:
+                delete_result = Result.query.filter_by(policy = attribute[0], 
+                                       policyUnit =  attribute[1],
+                                       target = attribute[2],
+                                       targetUnit = attribute[3], 
+                                       method = attribute[4], 
+                                       country = attribute[5], 
+                                       yearPolicy = attribute[6],
+                                       estimate = attribute[7],
+                                       standardError = attribute[8],
+                                       sampleSize = attribute[9]).first()
+                db.session.delete(delete_result)
+        # Appending contributor
+        article_db.contributor.append(current_user)
+        db.session.commit()   
+        flash('You have succesfully added results to the article. Thank you!', 'success')            
+        return redirect(url_for('contribution.contribute'))
+    # Charge data to form if already existing    
+    elif request.method == 'GET':
+        results = [{'policy': resultdb.policy, 
+                    'policyUnit': resultdb.policyUnit, 
+                    'target': resultdb.target,
+                    'targetUnit': resultdb.targetUnit,
+                    'method': resultdb.method,
+                    'country': resultdb.country,
+                    'year': resultdb.yearPolicy,
+                    'estimate': resultdb.estimate,
+                    'standardError': resultdb.standardError,
+                    'sampleSize': resultdb.sampleSize} 
+                    for resultdb in article_db.result]
+        for result in results:
+            result_list.list.append_entry(result)
+
+    return render_template('/update_result.html',
+            form = result_list,
+            _template = result_subform
     )

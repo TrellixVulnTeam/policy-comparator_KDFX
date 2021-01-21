@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm, Form
-from wtforms import StringField, SubmitField, BooleanField, TextAreaField
+from wtforms import StringField, SubmitField, BooleanField, TextAreaField, FloatField
 from wtforms import validators
 from wtforms.fields.core import FieldList,FormField, IntegerField
-from wtforms.validators import DataRequired, Email #, ValidationError
+from wtforms.validators import DataRequired, Email, Regexp #, ValidationError
 
 # Form to edit fact-sheet meta-info
 class FactSheetForm(FlaskForm):
@@ -70,4 +70,73 @@ class ArticleForm(FlaskForm):
         min_entries=1,
         max_entries=20
     )
-    submit = SubmitField('Save')
+    submit = SubmitField('Save and go to Article Results')
+
+
+# Form to add a policy-target to an article
+# Nested into ListResultForm
+class ResultForm(FlaskForm):
+    """Form to create the policy-target
+    """
+    policy = StringField(
+        'Policy',
+        render_kw={'placeholder':"Policy"},
+        validators=[DataRequired()]
+    )
+    target = StringField(
+        'Target',
+        render_kw={'placeholder':"Target"},
+        validators=[DataRequired()]
+    )
+    policyUnit = StringField(
+        'Policy Unit',
+        render_kw={'placeholder':"Policy Unit"},
+        validators=[DataRequired()]
+    )
+    targetUnit = StringField(
+        'Policy Unit',
+        render_kw={'placeholder':"Policy Unit"},
+        validators=[DataRequired()]
+    )
+    method = StringField(
+        'Identification Method',
+        render_kw={'placeholder':"Identification Method"},
+        validators=[DataRequired()]
+    )
+    country = StringField(
+        'Program Country',
+        render_kw={'placeholder':"Program Country"},
+        validators=[DataRequired()]
+    )
+    year = IntegerField(
+        'Program Year',
+        render_kw={'placeholder':"Program Year"},
+        validators=[DataRequired()]
+    )
+    estimate = FloatField(
+        'Estimate',
+        render_kw={'placeholder':"Estimate"},
+        validators=[DataRequired()]
+    )
+    standardError = FloatField(
+        'Standard-Error',
+        render_kw={'placeholder':"Standard-Error"},
+        validators=[DataRequired()]
+    )
+    
+    sampleSize = IntegerField(
+        'Sample Size',
+        render_kw={'placeholder':"Sample Size"},
+        validators=[DataRequired()]
+    )
+
+class ListResultForm(FlaskForm):
+    """Form to submit list of policy-targets to database
+
+    """
+    list = FieldList(
+        FormField(ResultForm),
+        min_entries=1,
+        max_entries=20
+    )
+    submit = SubmitField('Save and go back to contributor menu')

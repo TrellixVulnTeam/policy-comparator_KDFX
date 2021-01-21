@@ -68,15 +68,17 @@
     </header>
   
     <body>
-      {% with messages = get_flashed_messages(with_categories=true) %}
+      
+        {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
           {% for category, message in messages %}
-          <div class="alert-{{ category }}">
-            <div class="container alertHome">{{ message }}</div>
+          <div id="snackbar" class="alert-{{ category }}">
+            {{ message }}
           </div>
           {% endfor %}
         {% endif %}
       {% endwith %}
+      
       {% block content %}
       {% endblock %}
       <!-- JavaScript Part -->
@@ -86,10 +88,8 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>  
     </body>
       <!--Footer-->
-      <footer class="page-footer">
-        <div class="container">
+      <footer class="footerCustom">
           <hr>
-          <p style="text-align:center;">Environmental Policies Comparator - January 2020 - Alpha - <a href="mailto:yann.collindavid@gmail.com">Yann David</a>
-        </div>
+          <p>Environmental Policies Comparator - January 2020 - Alpha - <a href="mailto:yann.collindavid@gmail.com">Yann David</a>
         </footer>
 </html>

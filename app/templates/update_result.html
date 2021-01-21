@@ -1,0 +1,49 @@
+<!--This is the homepage template-->
+<!--Yann David | Last modified: 28.12-->
+{% extends "base.html" %}
+{% import "macro.html" as macro %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1>Hello {{ current_user.name }} {{ current_user.surname }}.</h1>
+    <legend class="border-bottom mb-4">You can add Article's Results to the database here.</legend>
+  </div>
+</div>
+
+<div class="container">
+  <form id="result-form" method="POST" role="form" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+      <!-- Adding Results Part -->
+      <h3>Results</h3>
+      <!-- <div class="is-hidden">editpage</div> -->
+      <div class="subforms-container form-inline" id="subforms-container">
+        {% for subform in form.list %}
+        {{ macro.render_result_form(subform, loop.index0) }}
+        {% endfor %}
+        {% if form.list.errors %}
+        <ul class="invalid-feedback">
+          {% for error_field, errors in form.errors.items() %}
+            <li> <span>{{ error_field }}: {{ errors|join(', ') }}</span></li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      <div>
+        <a id="add" href="#">Add Result</a>
+      </div>
+    </fieldset>
+    <div class="form-group" type="submit">
+      {{ form.submit(class="form-check-input") }}
+    </div>
+  </form>
+  {{ macro.render_result_form(_template, '_') }}
+
+
+</div>
+
+
+{% endblock %}
