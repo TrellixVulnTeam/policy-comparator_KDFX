@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm, Form
 from wtforms import StringField, SubmitField, BooleanField, TextAreaField, FloatField
 from wtforms import validators
 from wtforms.fields.core import FieldList,FormField, IntegerField
-from wtforms.validators import DataRequired, Email, Regexp #, ValidationError
+from wtforms.validators import DataRequired, Email, URL #, ValidationError
 
 # Form to edit fact-sheet meta-info
 class FactSheetForm(FlaskForm):
@@ -20,18 +20,18 @@ class AuthorForm(FlaskForm):
     """
     surname = StringField(
         'Surname',
-        render_kw={'placeholder':"Surname"},
+        render_kw={'placeholder':"Enter the author surname"},
         validators=[DataRequired()]
     )
     email = StringField(
         'Email',
-        render_kw={'placeholder':"Email"},
+        render_kw={'placeholder':"Enter the author email"},
 
         validators=[DataRequired(), Email()]
     )
     firstname = StringField(
         'First Name',
-        render_kw={'placeholder':"Name"},
+        render_kw={'placeholder':"Enter the author's first name"},
 
         validators=[DataRequired()]
     )
@@ -43,26 +43,26 @@ class ArticleForm(FlaskForm):
 
     """
     title = StringField(
-        'Title',
-        render_kw={'placeholder':"Title"},
+        'Article Title',
+        render_kw={'placeholder':"Enter the article title"},
         validators=[DataRequired()]
     )
 
     link =  StringField(
-        'Link to article',
-        render_kw={'placeholder':"Link"},
-        validators=[DataRequired()]
+        'Article link',
+        render_kw={'placeholder':"Enter the article link"},
+        validators=[DataRequired(), URL(message='Must be a valid URL')]
     )
 
     year = IntegerField(
         'Publication Year',
-        render_kw={'placeholder':"Year"},
+        render_kw={'placeholder':"Enter the publication year of the article"},
         validators=[DataRequired()]
     )
     
     journal = StringField(
         'Journal',
-        render_kw={'placeholder':"Journal"},
+        render_kw={'placeholder':"Journal in which the article was published"},
         validators=[DataRequired()]
     )
     authors = FieldList(
@@ -70,7 +70,7 @@ class ArticleForm(FlaskForm):
         min_entries=1,
         max_entries=20
     )
-    submit = SubmitField('Save and go to Article Results')
+    submit = SubmitField('Save General Informations')
 
 
 # Form to add a policy-target to an article
@@ -80,53 +80,53 @@ class ResultForm(FlaskForm):
     """
     policy = StringField(
         'Policy',
-        render_kw={'placeholder':"Policy"},
+        render_kw={'placeholder':"Enter or select the type of intervention"},
         validators=[DataRequired()]
     )
     target = StringField(
         'Target',
-        render_kw={'placeholder':"Target"},
+        render_kw={'placeholder':"Enter or select the target measure"},
         validators=[DataRequired()]
     )
     policyUnit = StringField(
-        'Policy Unit',
-        render_kw={'placeholder':"Policy Unit"},
+        'Policy unit',
+        render_kw={'placeholder':"Enter or select the policy unit of measurement"},
         validators=[DataRequired()]
     )
     targetUnit = StringField(
-        'Policy Unit',
-        render_kw={'placeholder':"Policy Unit"},
+        'Target unit',
+        render_kw={'placeholder':"Enter or select the target unit of measurement"},
         validators=[DataRequired()]
     )
     method = StringField(
         'Identification Method',
-        render_kw={'placeholder':"Identification Method"},
+        render_kw={'placeholder':"Enter or select the identification strategy"},
         validators=[DataRequired()]
     )
     country = StringField(
         'Program Country',
-        render_kw={'placeholder':"Program Country"},
+        render_kw={'placeholder':"Select the country in which the program took place"},
         validators=[DataRequired()]
     )
     year = IntegerField(
         'Program Year',
-        render_kw={'placeholder':"Program Year"},
+        render_kw={'placeholder':"Select the year the program took place"},
         validators=[DataRequired()]
     )
     estimate = FloatField(
         'Estimate',
-        render_kw={'placeholder':"Estimate"},
+        render_kw={'placeholder':"Copy the causal effect of the policy on the target from article"},
         validators=[DataRequired()]
     )
     standardError = FloatField(
         'Standard-Error',
-        render_kw={'placeholder':"Standard-Error"},
+        render_kw={'placeholder':"Copy the associated standard-error"},
         validators=[DataRequired()]
     )
     
     sampleSize = IntegerField(
         'Sample Size',
-        render_kw={'placeholder':"Sample Size"},
+        render_kw={'placeholder':"Copy the sample size"},
         validators=[DataRequired()]
     )
 
@@ -139,4 +139,4 @@ class ListResultForm(FlaskForm):
         min_entries=1,
         max_entries=20
     )
-    submit = SubmitField('Save and go back to contributor menu')
+    submit = SubmitField('Save Results')

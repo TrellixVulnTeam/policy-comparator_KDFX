@@ -37,7 +37,7 @@ function adjustIndices(removedIndex) {
         $form.data('index', newIndex);
 
         // Change IDs in form fields
-        $form.find('label, input, select, textarea').each(function(j) {
+        $form.find('h4, label, input, select, textarea').each(function(j) {
             var $item = $(this);
 
             if ($item.is('label')) {
@@ -45,6 +45,22 @@ function adjustIndices(removedIndex) {
                 $item.attr('for', $item.attr('for').replace(regex, repVal));
                 return;
             }
+            if (document.getElementById('authors-_-form')){
+                if ($item.is('h4')) {
+                    // Update labels
+                    var index = newIndex + 1
+                    $item.text('Author '+index);
+                    return;
+                }
+            } else if (document.getElementById('list-_-form')){
+                if ($item.is('h4')) {
+                    // Update labels
+                    var index = newIndex + 1
+                    $item.text('Policy-Target '+index);
+                    return;
+                }
+            }
+            
 
             // Update other fields
             $item.attr('id', $item.attr('id').replace(regex, repVal));
@@ -122,7 +138,7 @@ function addForm() {
 
         // Maximum of 20 subforms
         if (newIndex >= 20) {
-            console.log('[WARNING] Reached maximum number of elements');
+            console.log('[WARNING] Reached maximum number of authors');
             return;
         }
 
@@ -130,7 +146,7 @@ function addForm() {
         var $newForm = $templateForm.clone();
         $newForm.attr('id', replaceTemplateIndex($newForm.attr('id'), newIndex));
         $newForm.data('index', newIndex);
-        $newForm.find('label, input, select, textarea').each(function(idx) {
+        $newForm.find('h4, label, input, select, textarea').each(function(idx) {
             var $item = $(this);
 
             if ($item.is('label')) {
@@ -138,7 +154,12 @@ function addForm() {
                 $item.attr('for', replaceTemplateIndex($item.attr('for'), newIndex));
                 return;
             }
-
+            if ($item.is('h4')) {
+                // Update labels
+                var index = newIndex + 1
+                $item.text('Author '+index);
+                return;
+            }
             // Update other fields
             $item.attr('id', replaceTemplateIndex($item.attr('id'), newIndex));
             $item.attr('name', replaceTemplateIndex($item.attr('name'), newIndex));
@@ -147,7 +168,7 @@ function addForm() {
         $('#subforms-container').append($newForm);
         $newForm.addClass('subform');
         $newForm.removeClass('is-hidden');
-        $newForm.find('.remove').click(removeForm);
+        $newForm.find('.removeBtn').click(removeForm);
 
        
 
@@ -183,7 +204,7 @@ function addForm() {
         $newForm.attr('id', replaceTemplateIndex($newForm.attr('id'), newIndex));
         $newForm.data('index', newIndex);
 
-        $newForm.find('label, input, select, textarea').each(function(idx) {
+        $newForm.find('h4, label, input, select, textarea').each(function(idx) {
             var $item = $(this);
 
             if ($item.is('label')) {
@@ -191,7 +212,12 @@ function addForm() {
                 $item.attr('for', replaceTemplateIndex($item.attr('for'), newIndex));
                 return;
             }
-
+            if ($item.is('h4')) {
+                // Update labels
+                var index = newIndex + 1
+                $item.text('Policy-Target '+index);
+                return;
+            }
             // Update other fields
             $item.attr('id', replaceTemplateIndex($item.attr('id'), newIndex));
             $item.attr('name', replaceTemplateIndex($item.attr('name'), newIndex));
@@ -201,13 +227,16 @@ function addForm() {
         $('#subforms-container').append($newForm);
         $newForm.addClass('subform');
         $newForm.removeClass('is-hidden');
-        $newForm.find('.remove').click(removeForm);
+        $newForm.find('.removeBtn').click(removeForm);
 
         
     }
 
     
 }
+
+
+
 
 function flashes() {
     // Get the snackbar DIV
@@ -218,10 +247,15 @@ function flashes() {
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
   } 
 
-
+var adjusting = "this.style.width = ((this.value.length + 1) * 8) + 'px';"
+  
 $(document).ready(function() {
-        clear(); // Clears the input at origin
-        $('.remove').click(removeForm); // Removes undesired input
-        $('#add').click(addForm); // Adds input to form
-        flashes();
+    clear(); // Clears the input at origin
+    $(".input-adjust").attr("onkeypress", adjusting)
+    $('.removeBtn').click(removeForm); // Removes undesired input
+    $('#add').click(function(e) {
+        addForm();
+        return false;
+    }); // Adds input to form
+    flashes();
 });

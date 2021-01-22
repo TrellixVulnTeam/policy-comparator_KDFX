@@ -13,49 +13,53 @@
 #}
 <div id="authors-{{ index }}-form" class="{% if index != '_' %} subform {% else %} is-hidden {% endif %}" data-index="{{ index }}"> 
   {{ subform.hidden_tag() }}
-  <div class="form-group">
+  <h4>
+    Author {{ index }}
+  </h4>
+  <button type="button" class="removeBtn btn btn-outline-danger">Remove</button>
+  <div class="formStyleResult">
         {{ subform.firstname.label(class_="form-control-label") }}
         {% if subform.firstname.errors %}
-        {{ subform.firstname(class_="form-control form-control-lg is-invalid") }}
+        {{ subform.firstname(class_="input-adjust is-invalid") }}
         <div class="invalid-feedback">
           {% for error in subform.firstname.errors %}
           <span>{{ error }}</span>
           {% endfor %}
         </div>
         {% else %}
-        {{ subform.firstname(class_="form-control form-control-lg") }}
+        {{ subform.firstname(class_="input-adjust") }}
         {% endif %}
     </div>
 
-    <div class="form-group">
+    <div class="formStyleResult">
         {{ subform.surname.label(class_="form-control-label")  }}
         {% if subform.surname.errors %}
-        {{ subform.surname(class_="form-control form-control-lg is-invalid") }}
+        {{ subform.surname(class_="input-adjust is-invalid") }}
         <div class="invalid-feedback">
           {% for error in subform.surname.errors %}
           <span>{{ error }}</span>
           {% endfor %}
         </div>
         {% else %}
-        {{ subform.surname(class_="form-control form-control-lg") }}
+        {{ subform.surname(class_="input-adjust") }}
         {% endif %}
     </div>
 
-    <div class="form-group">
+    <div class="formStyleResult">
             {{ subform.email.label(class_="form-control-label") }}
             {% if subform.email.errors %}
-            {{ subform.email(class_="form-control form-control-lg is-invalid") }}
+            {{ subform.email(class_="input-adjust is-invalid") }}
             <div class="invalid-feedback">
               {% for error in subform.email.errors %}
               <span>{{ error }}</span>
               {% endfor %}
             </div>
             {% else %}
-            {{ subform.email(class_="form-control form-control-lg") }}
+            {{ subform.email(class_="input-adjust") }}
             {% endif %}
     </div>
-    <button type="button" class="remove btn btn-outline-danger">Remove</button>
-</div>
+    <hr />
+  </div>
 {% endmacro %}
 
 {% macro render_result_form(subform, index) %}
@@ -73,148 +77,154 @@
 
 <div id="list-{{ index }}-form" class="{% if index != '_' %} subform {% else %} is-hidden {% endif %}" data-index="{{ index }}"> 
   {{ subform.hidden_tag() }}
-  <div class="form-group ">
-        {{ subform.policy.label(class="form-control-label") }}
+  <h4>
+    {% set indexFin = index|int +1 %}
+    Policy-Target {{ indexFin|string }}
+  </h4>
+  <button type="button" class="removeBtn btn btn-outline-danger">Remove</button>
+
+  <h5>Policy and Target</h5>
+  <div class="formStyleResult ">
+        {{ subform.policy.label() }}
         {% if subform.policy.errors %}
-        {{ subform.policy(class="form-control form-control-lg is-invalid") }}
+        {{ subform.policy(class="input-adjust is-invalid") }}
         <div class="invalid-feedback">
           {% for error in subform.policy.errors %}
           <span>{{ error }}</span>
           {% endfor %}
         </div>
         {% else %}
-        {{ subform.policy(class="form-control form-control-lg") }}
+        {{ subform.policy(class="input-adjust") }}
         {% endif %}
-    </div>
-
-    <div class="form-group ">
-      {{ subform.policyUnit.label(class="form-control-label") }}
-      {% if subform.policyUnit.errors %}
-      {{ subform.policyUnit(class="form-control form-control-lg is-invalid") }}
-      <div class="invalid-feedback">
-        {% for error in subform.policyUnit.errors %}
-        <span>{{ error }}</span>
-        {% endfor %}
       </div>
-      {% else %}
-      {{ subform.policyUnit(class="form-control form-control-lg") }}
-      {% endif %}
-    </div>
-    
+        <div class="formStyleResult">
+        {{ subform.policyUnit.label() }}
+        {% if subform.policyUnit.errors %}
+        {{ subform.policyUnit(class="input-adjust is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in subform.policyUnit.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ subform.policyUnit(class="input-adjust") }}
+        {% endif %}
+    </div>  
 
-    <div class="form-group">
-        {{ subform.target.label(class="form-control-label")  }}
+    <div class="formStyleResult">
+        {{ subform.target.label()  }}
         {% if subform.target.errors %}
-        {{ subform.target(class="form-control form-control-lg is-invalid") }}
+        {{ subform.target(class="input-adjust is-invalid") }}
         <div class="invalid-feedback">
           {% for error in subform.target.errors %}
           <span>{{ error }}</span>
           {% endfor %}
         </div>
         {% else %}
-        {{ subform.target(class="form-control form-control-lg") }}
+        {{ subform.target(class="input-adjust") }}
         {% endif %}
     </div>
 
-    <div class="form-group">
-      {{ subform.targetUnit.label(class="form-control-label")  }}
+    <div class="formStyleResult">
+      {{ subform.targetUnit.label()  }}
       {% if subform.targetUnit.errors %}
-      {{ subform.targetUnit(class="form-control form-control-lg is-invalid") }}
+      {{ subform.targetUnit(class="input-adjust is-invalid") }}
       <div class="invalid-feedback">
         {% for error in subform.targetUnit.errors %}
         <span>{{ error }}</span>
         {% endfor %}
       </div>
       {% else %}
-      {{ subform.targetUnit(class="form-control form-control-lg") }}
+      {{ subform.targetUnit(class="input-adjust") }}
       {% endif %}
     </div>
 
-    <div class="form-group">
-      {{ subform.method.label(class="form-control-label")  }}
+    <h5>Methodology and Program Details</h5>
+    <div class="formStyleResult">
+      {{ subform.method.label()  }}
       {% if subform.method.errors %}
-      {{ subform.method(class="form-control form-control-lg is-invalid") }}
+      {{ subform.method(class="input-adjust is-invalid") }}
       <div class="invalid-feedback">
         {% for error in subform.method.errors %}
         <span>{{ error }}</span>
         {% endfor %}
       </div>
       {% else %}
-      {{ subform.method(class="form-control form-control-lg") }}
+      {{ subform.method(class="input-adjust") }}
       {% endif %}
     </div>
 
-    <div class="form-group">
-      {{ subform.country.label(class="form-control-label")  }}
+    <div class="formStyleResult">
+      {{ subform.country.label()  }}
       {% if subform.country.errors %}
-      {{ subform.country(class="form-control form-control-lg is-invalid") }}
+      {{ subform.country(class="input-adjust is-invalid") }}
       <div class="invalid-feedback">
         {% for error in subform.country.errors %}
         <span>{{ error }}</span>
         {% endfor %}
       </div>
       {% else %}
-      {{ subform.country(class="form-control form-control-lg") }}
+      {{ subform.country(class="input-adjust") }}
       {% endif %}
     </div>
 
 
-    <div class="form-group">
-      {{ subform.year.label(class="form-control-label")  }}
+    <div class="formStyleResult">
+      {{ subform.year.label()  }}
       {% if subform.year.errors %}
-      {{ subform.year(class="form-control form-control-lg is-invalid") }}
+      {{ subform.year(class="input-adjust is-invalid") }}
       <div class="invalid-feedback">
         {% for error in subform.year.errors %}
         <span>{{ error }}</span>
         {% endfor %}
       </div>
       {% else %}
-      {{ subform.year(class="form-control form-control-lg") }}
+      {{ subform.year(class="input-adjust") }}
       {% endif %}
     </div>
 
-    <div class="form-group">
-      {{ subform.estimate.label(class="form-control-label")  }}
+    <h5>Causal Effect</h5>
+    <div class="formStyleResult">
+      {{ subform.estimate.label()  }}
       {% if subform.estimate.errors %}
-      {{ subform.estimate(class="form-control form-control-lg is-invalid") }}
+      {{ subform.estimate(class="input-adjust is-invalid") }}
       <div class="invalid-feedback">
         {% for error in subform.estimate.errors %}
         <span>{{ error }}</span>
         {% endfor %}
       </div>
       {% else %}
-      {{ subform.estimate(class="form-control form-control-lg") }}
+      {{ subform.estimate(class="input-adjust") }}
       {% endif %}
     </div>
 
-    <div class="form-group">
-      {{ subform.standardError.label(class="form-control-label")  }}
+    <div class="formStyleResult">
+      {{ subform.standardError.label()  }}
       {% if subform.standardError.errors %}
-      {{ subform.standardError(class="form-control form-control-lg is-invalid") }}
+      {{ subform.standardError(class="input-adjust is-invalid") }}
       <div class="invalid-feedback">
         {% for error in subform.standardError.errors %}
         <span>{{ error }}</span>
         {% endfor %}
       </div>
       {% else %}
-      {{ subform.standardError(class="form-control form-control-lg") }}
+      {{ subform.standardError(class="input-adjust") }}
       {% endif %}
     </div>
 
-    <div class="form-group">
-      {{ subform.sampleSize.label(class="form-control-label")  }}
+    <div class="formStyleResult">
+      {{ subform.sampleSize.label()  }}
       {% if subform.sampleSize.errors %}
-      {{ subform.sampleSize(class="form-control form-control-lg is-invalid") }}
+      {{ subform.sampleSize(class="input-adjust is-invalid") }}
       <div class="invalid-feedback">
         {% for error in subform.sampleSize.errors %}
         <span>{{ error }}</span>
         {% endfor %}
       </div>
       {% else %}
-      {{ subform.sampleSize(class="form-control form-control-lg") }}
+      {{ subform.sampleSize(class="input-adjust") }}
       {% endif %}
     </div>
-
-    <button type="button" class="remove btn btn-outline-danger">Remove</button>
+    <hr />
 </div>
 {% endmacro %}

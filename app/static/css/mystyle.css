@@ -25,15 +25,6 @@ time, mark, audio, video {
 body{
     font-family: 'Noto Sans JP', sans-serif;
     margin-top: 56px;
-    height: 100%;
-}
-.wrapper {
-    min-height: 100%;
-    margin-bottom: -100px;
-    padding-bottom: 100px;
-}
-footer {
-    height: 100px;
 }
 h1{
     font-size: 35px;
@@ -46,6 +37,9 @@ display: inline;
     display: inline;
 }
 h4{
+    font-size: 25px;
+}
+h5{
     font-size: 20px;
 }
 
@@ -174,42 +168,130 @@ position: center; */
    display: none!important;
 }
 
- /* The snackbar - position it at the bottom and in the middle of the screen */
- #snackbar {
+.formStyleAuthor{
+    width: 1000px;
+	margin: 30px auto;
+    padding: 0px 5px 0px 5px;
+}
+.formStyleAuthor label {
+    display: inline-block;
+	float: left;
+	width: 150px;
+}
+.formStyleAuthor input {
+    background: transparent;
+	border: none;
+	border-bottom: 1px dashed #83A4C5;
+    min-width: 400px;
+    max-width: 80%;
+    outline: none;
+    display: inline-block;
+
+	padding: 0px 0px 0px 0px;
+	font-style: italic;
+} 
+
+
+.formStyleResult{
+    width: 1000px;
+	margin: 30px auto;
+    padding: 0px 5px 0px 5px;
+}
+.formStyleResult label{
+    display: inline-block;
+    float: left;
+    vertical-align: right;
+	width: 170px;
+}
+.formStyleResult input {
+    background: transparent;
+	border: none;
+	border-bottom: 1px dashed #83A4C5;
+    min-width: 400px;
+    max-width: 70%;
+    outline: none;
+    display: inline-block;
+
+	padding: 0px 0px 0px 0px;
+	font-style: italic;
+} 
+.formStyleResult .inline label{
+    display: inline-block;
+    float: left;
+	width: 100px;
+}
+.formStyleResult .inline input {
+    background: transparent;
+	border: none;
+	border-bottom: 1px dashed #83A4C5;
+    min-width: 200px;
+    max-width: 70%;
+    outline: none;
+    display: inline-block;
+
+	padding: 0px 0px 0px 0px;
+	font-style: italic;
+} 
+
+
+.sectionForm{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.endSection{
+    margin-bottom: 30px;;
+}
+.subform h4 {
+    display: inline-block;
+    font-size: 25px;
+}
+.subform h5 {
+    margin-top: 20px;
+    font-size: 20px;
+}
+.removeBtn{
+    display: inline-block;
+    float: right;
+}
+
+.submitForm{
+    margin-top: 30px;
+    display: inline-block;
+
+}
+/* Snackbar options */
+#snackbar {
     visibility: hidden; /* Hidden by default. Visible on click */
     text-align: center; /* Centered text */
-    border-radius: 2px; /* Rounded borders */
-    position: fixed; /* Sit on top of the screen */
-    left: 50%; /* Center the snackbar */
-    bottom: 30px; /* 30px from the bottom */
+    position: absolute; /* Top right snackbar */
+    right: 60px;
+    top: 70px; 
   }
-  
-  /* Show the snackbar when clicking on a button (class added with JavaScript) */
-  #snackbar.show {
-    visibility: visible; /* Show the snackbar */
-    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
-    However, delay the fade out process for 2.5 seconds */
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  /* Made visible with javascript */
+    #snackbar.show {
+    visibility: visible; 
+    -webkit-animation: fadein 0.5s, fadeout 0.9s 3s;
+    animation: fadein 0.5s, fadeout 0.9s 3s;
   }
   
   /* Animations to fade the snackbar in and out */
   @-webkit-keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
+    from {top: 70x; right: 0px; opacity: 0;}
+    to {top: 70x;right: 60px; opacity: 1;}
   }
   
   @keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
+    from {top: 70x; right: 0px; opacity: 0;}
+    to {top: 70x; right: 60px; opacity: 1;}
   }
   
   @-webkit-keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
+    from {top: 70x;right: 60px; opacity: 1;}
+    to {top: 70x;right: 0px; opacity: 0;}
   }
   
   @keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
+    from {top: 70x;right: 60px; opacity: 1;}
+    to {top: 70x;right: 0px; opacity: 0;}
   } 

@@ -57,7 +57,7 @@ def edit_fact_sheet(fact_id):
         form.abstract.data = sheet.abstract
         form.submit.data = sheet.submit
         form.publish.data = sheet.publish    
-    return render_template('/fact_sheet.html', form = form,
+    return render_template('/edit_fact_sheet.html', form = form,
                             legend = "edit",
                             creation = creation,
                             title = title,
@@ -95,7 +95,7 @@ def new_article():
         flash('Your Article Sheet has been submitted. Thank you!', 'success')            
         return redirect(url_for('contribution.edit_policy_target', article_id = article_id))
 
-    return render_template('/new_article.html',
+    return render_template('/edit_article.html',
             form = article_form,
             _template = author_subform
     )
@@ -139,7 +139,7 @@ def edit_article(article_id):
         article_db.contributor.append(current_user)
         db.session.commit()   
         flash('Your Article has been updated. Thank you!', 'success')            
-        return redirect(url_for('contribution.edit_policy_target', article_id = article_id))
+        # return redirect(url_for('contribution.edit_policy_target', article_id = article_id))
     elif request.method == 'GET':
         article_form.title.data = article_db.title
         article_form.link.data = article_db.link
@@ -150,9 +150,10 @@ def edit_article(article_id):
         for author in authors:
             article_form.authors.append_entry(author)
 
-    return render_template('/new_article.html',
+    return render_template('/edit_article.html',
             form = article_form,
-            _template = author_subform
+            _template = author_subform,
+            article_id = article_id
     )
 
 
@@ -241,7 +242,7 @@ def edit_policy_target(article_id):
         article_db.contributor.append(current_user)
         db.session.commit()   
         flash('You have succesfully added results to the article. Thank you!', 'success')            
-        return redirect(url_for('contribution.contribute'))
+        # return redirect(url_for('contribution.contribute'))
     # Charge data to form if already existing    
     elif request.method == 'GET':
         results = [{'policy': resultdb.policy, 
@@ -260,5 +261,6 @@ def edit_policy_target(article_id):
 
     return render_template('/update_result.html',
             form = result_list,
-            _template = result_subform
+            _template = result_subform,
+            article_id = article_id
     )

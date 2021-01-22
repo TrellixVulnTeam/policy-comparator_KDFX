@@ -14,75 +14,75 @@
 </div>
 
 <div class="container">
-  <form id="author-form" method="POST" role="form" enctype="multipart/form-data">
+  <form id="author-form" method="POST" role="form">
     {{ form.hidden_tag() }}
-    <fieldset class="form-group">
-
+    <fieldset>
       <!--General Article Informations -->
-      <h3>General Information</h3>
+      <h3 class="sectionForm">General Information</h3>
       <!--Title -->
-      <div class="form-group">
-        {{ form.title.label(class="form-control-label") }}
+      <div class="formStyleAuthor">
+        {{ form.title.label() }}
         {% if form.title.errors %}
-        {{ form.title(class="form-control form-control-lg is-invalid") }}
+        {{ form.title(class="is-invalid input-adjust") }}
         <div class="invalid-feedback">
           {% for error in form.title.errors %}
           <span>{{ error }}</span>
           {% endfor %}
         </div>
         {% else %}
-        {{ form.title(class="form-control form-control-lg") }}
+        {{ form.title(class="input-adjust") }}
         {% endif %}
       </div>
       <!-- Link -->
-      <div class="form-group">
-        {{ form.link.label(class="form-control-label") }}
+      <div class="formStyleAuthor">
+        {{ form.link.label() }}
         {% if form.link.errors %}
-        {{ form.link(class="form-control form-control-lg is-invalid") }}
+        {{ form.link(class="is-invalid input-adjust") }}
         <div class="invalid-feedback">
           {% for error in form.link.errors %}
           <span>{{ error }}</span>
           {% endfor %}
         </div>
         {% else %}
-        {{ form.link(class="form-control form-control-lg") }}
+        {{ form.link(class="input-adjust") }}
         {% endif %}
       </div>
       <!-- Journal -->
-      <div class="form-group">
-        {{ form.journal.label(class="form-control-label") }}
+      <div class="formStyleAuthor">
+        {{ form.journal.label() }}
         {% if form.journal.errors %}
-        {{ form.journal(class="form-control form-control-lg is-invalid") }}
+        {{ form.journal(class="is-invalid input-adjust") }}
         <div class="invalid-feedback">
           {% for error in form.journal.errors %}
           <span>{{ error }}</span>
           {% endfor %}
         </div>
         {% else %}
-        {{ form.journal(class="form-control form-control-lg") }}
+        {{ form.journal(class="input-adjust") }}
         {% endif %}
       </div>
       <!-- Year -->
-      <div class="form-group">
-        {{ form.year.label(class="form-control-label") }}
+      <div class="formStyleAuthor endSection">
+        {{ form.year.label() }}
         {% if form.year.errors %}
-        {{ form.year(class="form-control form-control-lg is-invalid") }}
+        {{ form.year(class="is-invalid") }}
         <div class="invalid-feedback">
           {% for error in form.year.errors %}
           <span>{{ error }}</span>
           {% endfor %}
         </div>
         {% else %}
-        {{ form.year(class="form-control form-control-lg") }}
+        {{ form.year() }}
         {% endif %}
       </div>
-      <hr />
+      <hr>
       <!-- Adding Authors Part -->
-      <h3>Authors</h3>
-      <div class="subforms-container form-inline" id="subforms-container">
-        {% for subform in form.authors %}
-        {{ macro.render_author_form(subform, loop.index0) }}
-        {% endfor %}
+      <h3 class="sectionForm">Authors</h3>
+      <div class="subforms-container" id="subforms-container">
+          {% for subform in form.authors %}
+            {{ macro.render_author_form(subform, loop.index0) }}
+          {% endfor %}
+        
         <!-- {% if form.authors.errors %}
         <ul class="invalid-feedback">
           {% for error_field, errors in form.errors.items() %}
@@ -95,9 +95,12 @@
         <a id="add" href="#">Add Author</a>
       </div>
     </fieldset>
-    <div class="form-group" type="submit">
+    <div class="submitForm" type="submit">
       {{ form.submit(class="form-check-input") }}
     </div>
+    {% if article_id %}
+      <a class="button" href="{{ url_for('contribution.edit_policy_target', article_id=article_id) }}">Go to Results' Page</a>
+    {% endif %}
   </form>
   {{ macro.render_author_form(_template, '_') }}
 

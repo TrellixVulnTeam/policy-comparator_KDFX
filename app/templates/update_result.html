@@ -18,9 +18,9 @@
     {{ form.hidden_tag() }}
     <fieldset class="form-group">
       <!-- Adding Results Part -->
-      <h3>Results</h3>
+      <h3 class="sectionForm">Policy-Target Results</h3>
       <!-- <div class="is-hidden">editpage</div> -->
-      <div class="subforms-container form-inline" id="subforms-container">
+      <div class="subforms-container" id="subforms-container">
         {% for subform in form.list %}
         {{ macro.render_result_form(subform, loop.index0) }}
         {% endfor %}
@@ -36,13 +36,12 @@
         <a id="add" href="#">Add Result</a>
       </div>
     </fieldset>
-    <div class="form-group" type="submit">
-      {{ form.submit(class="form-check-input") }}
+    <div class="submitForm" type="submit">
+      {{ form.submit(class="form-check-input submitForm") }}
     </div>
+    <a class="button" href="{{ url_for('contribution.edit_article', article_id=article_id) }}">Go to  Article information Page</a>
   </form>
   {{ macro.render_result_form(_template, '_') }}
-
-
 </div>
 
 
