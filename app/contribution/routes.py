@@ -90,7 +90,7 @@ def new_article():
             )
             article.author.append(new_author)
             article.contributor.append(current_user)
-        db.session.commit()   
+        db.session.commit()
         article_id = article.id
         flash('Your Article Sheet has been submitted. Thank you!', 'success')            
         return redirect(url_for('contribution.edit_policy_target', article_id = article_id))
@@ -112,7 +112,7 @@ def edit_article(article_id):
         article_db.creation = article_db.creation
         article_db.update = date.today()
         article_db.title = article_form.title.data
-        article_db.link = article_form.link.data
+        article_db.link = str(article_form.link.data)
         article_db.year = article_form.year.data
         article_db.journal = article_form.journal.data
         authors_form =  article_form.authors.data

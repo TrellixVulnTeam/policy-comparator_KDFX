@@ -4,12 +4,14 @@
 <html lang="en">
     <head>
       <meta charset="utf-8">
+      <!-- icon -->
+      <link rel="icon" href="../static/images/icone.svg">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/mystyle.css') }}">    
         <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">    
 
         <!--Font Awesome-->
-        <script src="https://kit.fontawesome.com/8c50a9fa48.js" crossorigin="anonymous"></script>
+        <!-- <script src="https://kit.fontawesome.com/8c50a9fa48.js" crossorigin="anonymous"></script> -->
 
         <!-- Google font Noto Sans Jp -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -26,7 +28,8 @@
       <nav class="navbar fixed-top navbar-toggleable-xl navbar-light navbarText">
         <div class="container">
           <a class="navbar-brand ml-auto navbarText" href="{{ url_for('main.index') }}">
-            <i class="far fa-chart-bar"></i> 
+            <!-- <i class="far fa-chart-bar"></i>  -->
+            <img class="icon" src="../static/images/icone.png" alt="chart">
             Comparator
           </a>
           <div class="navbar-collapse collapse ml-auto">
@@ -83,7 +86,7 @@
       {% endblock %}
       <!-- JavaScript Part -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-            <script src="{{ url_for('static', filename='js/myjs.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/myjs.js') }}"></script>
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>  
     </body>

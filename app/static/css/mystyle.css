@@ -22,276 +22,302 @@ time, mark, audio, video {
 } */
 
 /* C'est parti */
-body{
-    font-family: 'Noto Sans JP', sans-serif;
-    margin-top: 56px;
+body {
+  font-family: "Noto Sans JP", sans-serif;
+  margin-top: 56px;
 }
-h1{
-    font-size: 35px;
-}
-
-.hContribute{
-display: inline;
-}
-.buttonContribute{
-    display: inline;
-}
-h4{
-    font-size: 25px;
-}
-h5{
-    font-size: 20px;
+h1 {
+  font-size: 35px;
 }
 
-.navbarText{
-    font-weight: 400;
+.hContribute {
+  display: inline;
+}
+.buttonContribute {
+  display: inline;
+}
+h4 {
+  font-size: 25px;
+}
+h5 {
+  font-size: 20px;
 }
 
-.layer{
-    background-color: #adcad696 !important;
-    z-index: 10;
+.navbarText {
+  font-weight: 400;
+}
+
+.layer {
+  background-color: #adcad696 !important;
+  z-index: 10;
 }
 
 .icon {
-    background: url('/static/icons/stats.svg');
-    height: 20px;
-    width: 20px;
-    display: block;
-    /* Other styles here */
+  height: 20%;
+  width: 20%;
 }
 
 .bannerimage {
-    background-image: url(/static/images/tree-247122.jpg);
-    background-size: cover;
-    background-position: center;
-    z-index: 9000;
-  }
-
-.bannerHome{
-    display: flex;
-    flex-direction: column;
-    /* margin-top: 56px; */
-    margin-bottom: 30px;
-    background-color: #adcad6;
-    padding-top: 30px;
-    padding-bottom: 30px;
-  }
-  
-.searchBanner{
-    width: 250px;
+  background-image: url(/static/images/tree-247122.jpg);
+  background-size: cover;
+  background-position: center;
+  z-index: 9000;
 }
 
-.bannerContent{
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
+.bannerHome {
+  display: flex;
+  flex-direction: column;
+  /* margin-top: 56px; */
+  margin-bottom: 30px;
+  background-color: #adcad6;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
-.rowBanner{
-    display: flex;
-    align-items: center;
-    margin-right: 7px;
-    /* width: 70%; */
+.searchBanner {
+  width: 250px;
+}
+
+.bannerContent {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.rowBanner {
+  display: flex;
+  align-items: center;
+  margin-right: 7px;
+  /* width: 70%; */
 }
 
 .borderlessResearch {
-    padding-top: 3px;
+  padding-top: 3px;
 }
 
-.bannerSubtitle{
-    margin-top: 5px;
+.bannerSubtitle {
+  margin-top: 5px;
 }
 
-.latest-topic{
-    margin-bottom: 30px;
+.latest-topic {
+  margin-bottom: 30px;
 }
 
-.allTopics{
-    justify-content: center;
-    align-items: center;
-    display: flex;
+.allTopics {
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
-.rowCard{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+.rowCard {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
-.footerCustom{
-    text-align:center;
-    bottom: 0px;
-    position:relative;
+.footerCustom {
+  text-align: center;
+  bottom: 0px;
+  position: relative;
 }
-.cardPublication{
-    background-color: rgba(224, 232, 235, 0.733);
-    width: 32%;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: space-between; */
+.cardPublication {
+  background-color: rgba(224, 232, 235, 0.733);
+  width: 32%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
 }
 
-.imagePublication{
-/* max-width: 100%;
+.imagePublication {
+  /* max-width: 100%;
 position: center; */
-    object-fit: cover;
-    height: 175px;
-    margin-bottom: 20px;
+  object-fit: cover;
+  height: 175px;
+  margin-bottom: 20px;
 }
 
-.titlePublication{
-    margin-left: 15px;
-    margin-right: 15px;
-    margin-top: 20px;
-    font-weight: 500;
-    margin-bottom: 10px; 
+.titlePublication {
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 20px;
+  font-weight: 500;
+  margin-bottom: 10px;
 }
 
-.titlePublication:link{
-    color:black
+.titlePublication:link {
+  color: black;
 }
 
-.abstractPublication{
-    margin-left: 15px;
-    margin-right: 15px;
-    margin-bottom: 30px;    
-    font-size: 15px;
-    overflow-y:scroll;
-    scrollbar-width: thin;
+.abstractPublication {
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 30px;
+  font-size: 15px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
 }
 
-.remove{
-    font-size: 18px;
+.remove {
+  font-size: 18px;
 }
 
-.is-hidden{
-   display: none!important;
+.is-hidden {
+  display: none !important;
 }
 
-.formStyleAuthor{
-    width: 1000px;
-	margin: 30px auto;
-    padding: 0px 5px 0px 5px;
+.formStyleAuthor {
+  width: 1000px;
+  margin: 30px auto;
+  padding: 0px 5px 0px 5px;
 }
 .formStyleAuthor label {
-    display: inline-block;
-	float: left;
-	width: 150px;
+  display: inline-block;
+  float: left;
+  width: 150px;
 }
 .formStyleAuthor input {
-    background: transparent;
-	border: none;
-	border-bottom: 1px dashed #83A4C5;
-    min-width: 400px;
-    max-width: 80%;
-    outline: none;
-    display: inline-block;
+  background: transparent;
+  border: none;
+  border-bottom: 1px dashed #83a4c5;
+  min-width: 400px;
+  max-width: 80%;
+  outline: none;
+  display: inline-block;
 
-	padding: 0px 0px 0px 0px;
-	font-style: italic;
-} 
-
-
-.formStyleResult{
-    width: 1000px;
-	margin: 30px auto;
-    padding: 0px 5px 0px 5px;
+  padding: 0px 0px 0px 0px;
+  font-style: italic;
 }
-.formStyleResult label{
-    display: inline-block;
-    float: left;
-    vertical-align: right;
-	width: 170px;
+
+.formStyleResult {
+  width: 1000px;
+  margin: 30px auto;
+  padding: 0px 5px 0px 5px;
+}
+.formStyleResult label {
+  display: inline-block;
+  float: left;
+  vertical-align: right;
+  width: 170px;
 }
 .formStyleResult input {
-    background: transparent;
-	border: none;
-	border-bottom: 1px dashed #83A4C5;
-    min-width: 400px;
-    max-width: 70%;
-    outline: none;
-    display: inline-block;
+  background: transparent;
+  border: none;
+  border-bottom: 1px dashed #83a4c5;
+  min-width: 400px;
+  max-width: 70%;
+  outline: none;
+  display: inline-block;
 
-	padding: 0px 0px 0px 0px;
-	font-style: italic;
-} 
-.formStyleResult .inline label{
-    display: inline-block;
-    float: left;
-	width: 100px;
+  padding: 0px 0px 0px 0px;
+  font-style: italic;
+}
+.formStyleResult .inline label {
+  display: inline-block;
+  float: left;
+  width: 100px;
 }
 .formStyleResult .inline input {
-    background: transparent;
-	border: none;
-	border-bottom: 1px dashed #83A4C5;
-    min-width: 200px;
-    max-width: 70%;
-    outline: none;
-    display: inline-block;
+  background: transparent;
+  border: none;
+  border-bottom: 1px dashed #83a4c5;
+  min-width: 200px;
+  max-width: 70%;
+  outline: none;
+  display: inline-block;
 
-	padding: 0px 0px 0px 0px;
-	font-style: italic;
-} 
-
-
-.sectionForm{
-    margin-top: 20px;
-    margin-bottom: 20px;
+  padding: 0px 0px 0px 0px;
+  font-style: italic;
 }
 
-.endSection{
-    margin-bottom: 30px;;
+.sectionForm {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.endSection {
+  margin-bottom: 30px;
 }
 .subform h4 {
-    display: inline-block;
-    font-size: 25px;
+  display: inline-block;
+  font-size: 25px;
 }
 .subform h5 {
-    margin-top: 20px;
-    font-size: 20px;
+  margin-top: 20px;
+  font-size: 20px;
 }
-.removeBtn{
-    display: inline-block;
-    float: right;
+.removeBtn {
+  display: inline-block;
+  float: right;
 }
 
-.submitForm{
-    margin-top: 30px;
-    display: inline-block;
-
+.submitForm {
+  margin-top: 30px;
+  display: inline-block;
 }
 /* Snackbar options */
 #snackbar {
-    visibility: hidden; /* Hidden by default. Visible on click */
-    text-align: center; /* Centered text */
-    position: absolute; /* Top right snackbar */
+  visibility: hidden; /* Hidden by default. Visible on click */
+  text-align: center; /* Centered text */
+  position: absolute; /* Top right snackbar */
+  right: 60px;
+  top: 70px;
+}
+/* Made visible with javascript */
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.9s 3s;
+  animation: fadein 0.5s, fadeout 0.9s 3s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {
+    top: 70x;
+    right: 0px;
+    opacity: 0;
+  }
+  to {
+    top: 70x;
     right: 60px;
-    top: 70px; 
+    opacity: 1;
   }
-  /* Made visible with javascript */
-    #snackbar.show {
-    visibility: visible; 
-    -webkit-animation: fadein 0.5s, fadeout 0.9s 3s;
-    animation: fadein 0.5s, fadeout 0.9s 3s;
+}
+
+@keyframes fadein {
+  from {
+    top: 70x;
+    right: 0px;
+    opacity: 0;
   }
-  
-  /* Animations to fade the snackbar in and out */
-  @-webkit-keyframes fadein {
-    from {top: 70x; right: 0px; opacity: 0;}
-    to {top: 70x;right: 60px; opacity: 1;}
+  to {
+    top: 70x;
+    right: 60px;
+    opacity: 1;
   }
-  
-  @keyframes fadein {
-    from {top: 70x; right: 0px; opacity: 0;}
-    to {top: 70x; right: 60px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    top: 70x;
+    right: 60px;
+    opacity: 1;
   }
-  
-  @-webkit-keyframes fadeout {
-    from {top: 70x;right: 60px; opacity: 1;}
-    to {top: 70x;right: 0px; opacity: 0;}
+  to {
+    top: 70x;
+    right: 0px;
+    opacity: 0;
   }
-  
-  @keyframes fadeout {
-    from {top: 70x;right: 60px; opacity: 1;}
-    to {top: 70x;right: 0px; opacity: 0;}
-  } 
+}
+
+@keyframes fadeout {
+  from {
+    top: 70x;
+    right: 60px;
+    opacity: 1;
+  }
+  to {
+    top: 70x;
+    right: 0px;
+    opacity: 0;
+  }
+}
