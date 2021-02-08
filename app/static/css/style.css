@@ -1,0 +1,275 @@
+/* Personal webpage css */
+/* Edited by Yann David - February 2021 */
+
+/******* GENERAL SETTINGS ************************************/
+/* Resetting margin/padding/margins */
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+/****** BODY PART **********************************************/
+
+/* Setting body parameters */
+
+body {
+  font-family: "Open Sans", Geneva, Tahoma, sans-serif;
+  font-size: 100%;
+  /*  will cover the 100% of viewport */
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 100px;
+  /* height of your footer */
+}
+
+/* Title options */
+h1 {
+  /* defining font zie relative to body font size */
+  font-size: 1.6em;
+  font-weight: 800;
+  /* margin-top: 0px; */
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* a h1.site {
+  color: white;
+  text-decoration: none;
+} */
+a.site {
+  /* removing bottom line of links in header */
+  color: white;
+  text-decoration: none;
+}
+a:hover .icon {
+  /* removing bottom line of links in header */
+  transform: scale(1.1);
+}
+h1 a:hover {
+  /* removing bottom line of links in header */
+  font-size: 1.61rem;
+}
+.site a:link,
+.site a:visited {
+  /* removing bottom line of links in header */
+  text-decoration: none;
+}
+p.subtitle {
+  font-size: 1.1rem;
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.icon {
+  height: 1.6rem;
+  width: 1.6rem;
+  padding-bottom: -10px;
+  padding-top: 5px;
+  margin-right: 5px;
+}
+
+div.container {
+  margin: 30px 20%;
+}
+
+div.background {
+  color: white;
+  background: linear-gradient(
+    to right top,
+    rgb(8, 87, 97) 35%,
+    rgb(7, 100, 24) 100%
+  );
+  top: 0px;
+  width: 100%;
+  border: 1px solid transparent;
+}
+
+.selectPolicy {
+  width: max-content;
+  margin: 50px auto 0px auto;
+  color: white;
+  background-color: rgb(4, 52, 58);
+  padding-left: 30px;
+  /* border: rgb(4, 52, 58) solid 1px; */
+}
+
+.itemSelect {
+  margin: 0px 8px 0px 8px;
+  min-height: fit-content;
+}
+
+.itemSelect.selector {
+  appearance: none;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: 1rem;
+  font-weight: 400;
+  text-decoration: underline dotted;
+  height: fit-content;
+  padding-bottom: 1px;
+}
+
+.info {
+  background-color: rgb(7, 77, 87);
+  color: white;
+  padding: 1rem;
+  margin: 0px;
+  border: none;
+  line-height: 20px;
+  width: 100px;
+}
+.info-text {
+  visibility: hidden;
+  font-family: "Open Sans", Geneva, Tahoma, sans-serif;
+  font-size: 0.8rem;
+  font-style: normal;
+  width: 180px;
+  background-color: rgba(0, 0, 0, 0.611);
+  color: white;
+  text-align: left;
+  border-radius: 6px;
+  padding: 5px 10px;
+
+  /* Position the tooltip */
+  position: absolute;
+  margin-left: 20px;
+  margin-top: -10px;
+  z-index: 1;
+}
+
+.selector select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Add some styling */
+}
+
+.info:hover,
+.info:active {
+  background-color: rgb(9, 93, 106);
+  font-size: 0.9rem;
+  /* padding: 0.8rem; */
+}
+.info:hover .info-text {
+  visibility: visible;
+}
+
+div.presentation {
+  /* position relative to ancestor element */
+  position: relative;
+  /* ensure the presentation box is centered */
+  margin: 80px auto 0px auto;
+
+  /* Padding element inside */
+  padding: 30px 40px 40px 40px;
+
+  /* border radius */
+  /* border-radius: 10px; */
+  /* temporary border to observe stuff */
+  /* border: 2px solid black; */
+  /* background-color: rgba(33, 28, 33, 0.33); */
+}
+
+/* Defining links parameters in paragraphs */
+
+p > br {
+  display: block;
+  content: ""; /*option added for spacing to work on chrome*/
+  margin-bottom: 30px;
+}
+
+ul.networkLinks {
+  clear: left;
+  /* removing list buttons */
+  list-style-type: none;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+ul.networkLinks li {
+  /* ensuring links are aligned */
+  margin-top: 30px;
+  display: inline-block;
+  float: none;
+}
+
+ul.networkLinks li a {
+  /* creating button blocks */
+  display: block;
+  /* space between buttons */
+  /* padding: 8px 15px 8px 15px; */
+  border-style: solid;
+  font-size: 0.8rem;
+  font-style: normal;
+  margin-left: 20px;
+  background-color: rgb(7, 77, 87);
+  padding: 1rem;
+  border: none;
+}
+
+ul.networkLinks li a:link,
+ul.networkLinks li a:visited {
+  /* removing bottom line of links in div */
+  text-decoration: none;
+  /* setting default links font color in div */
+  font-weight: 900;
+  color: white;
+}
+
+ul.networkLinks li a:hover,
+ul.networkLinks li a:active {
+  /* setting links font color in div when hover or active */
+  background-color: rgb(9, 93, 106);
+  /* setting links font weight in div when hover or active */
+  font-weight: 900;
+}
+
+.footerCustom {
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 2.5rem;
+}
+/*********************  Large devices *****************************/
+@media (min-width: 770px) {
+  div.presentation {
+    /* box width */
+    width: 800px;
+  }
+  .identity {
+    width: 30%;
+    float: right;
+  }
+  .selfPresentation {
+    float: left;
+    width: 60%;
+  }
+}
+
+@media (max-width: 769px) {
+  div.presentation {
+    /* box width */
+    border-color: transparent;
+    width: 90%;
+  }
+
+  .identity {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
+    height: auto;
+    margin-bottom: 30px;
+  }
+  img.imagePresentation {
+    display: block;
+    text-align: center;
+    max-width: 180px;
+    height: auto;
+  }
+}

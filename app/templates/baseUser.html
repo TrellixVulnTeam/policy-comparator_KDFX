@@ -1,0 +1,100 @@
+<!--This is the homepage template-->
+<!--Yann David | Last modified: 28.12-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- favicon -->
+    <link rel="icon" href="../static/images/icone.svg">
+    <!-- Webpage title -->
+    {% block head %}
+    <title>
+        {% block title %}{% endblock %}Environmental Policies Comparator
+    </title>
+    {% endblock %}
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Adding google font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <!-- CSS link -->
+    <link rel="stylesheet" media="screen" href="../static/css/style.css">
+</head>
+<header>
+    <!-- <nav>
+            <ul>
+                <li><a href="https://drive.google.com/file/d/1oJXli3j_zsOLcdgDFftnMW9iOXDbFvTj/view?usp=sharing" target="_blank">CV</a></li>
+                <li><a href="https://fr.linkedin.com/in/ydavid" target="_blank">Linkedin</a></li>
+                <li><a href="mailto:yann.collindavid@gmail.com" target="_blank">Email me</a></li>
+            </ul>
+        </nav> -->
+</header>
+
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            <div id = 'snackbar' class="snackbar alert-{{ category }}">
+            {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <!-- Personal Presentation Part -->
+    <div class="background">
+        <div class="presentation">
+            <h1 class="site">
+                <a class="site" href="{{ url_for('main.index') }}">
+                    <img src="../static/images/icone.svg" class="icon" alt="icon"> 
+                    ENVIRONMENTAL POLICIES COMPARATOR
+                </a>
+            </h1>
+
+            <p class="subtitle">
+                Easy access to environmental policies impact evaluations meta-analyses.
+            </p>
+            <div class="selectPolicy">
+                <span class="itemSelect">The effect of </span>
+                <select name="policy" class="itemSelect selector">
+                    <option value="">--a policy--</option>
+                    <option value="">Carbon Tax</option>
+                </select>
+                <span class="itemSelect"> on </span>
+                <select name="target" class="itemSelect selector">
+                    <option value="">--a target--</option>
+                    <option value="">CO2 emissions</option>
+                </select>
+                <button type="submit" class="info" form="form1" value="Compare!">
+                    Compare
+                    <span class="info-text">Select a policy and a target to find the associated meta analysis</span>
+        
+                </button>
+        
+        
+            </div>
+            <p class>
+            </p>
+            <ul class="networkLinks">
+        
+                <li><a href="{{ url_for('main.project') }}">How does it work?</a></li>
+        
+                <li><a href="{{ url_for('main.project') }}">Discover the project</a></li>
+            </ul>
+            
+        </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+    <!-- Projects presentation -->
+    <!-- <div class="projects">
+            <h1>Discover my projects</h1>
+        </div> -->
+</body>
+<footer class="footerCustom">
+    <p>
+        Environmental Policies Comparator - February 2020 - Alpha - <a href="https://yanndav.github.io/" target="_blank">Yann
+            David</a>
+    </p>
+</footer>
+
+</html>
