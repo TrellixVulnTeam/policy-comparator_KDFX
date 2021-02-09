@@ -1,17 +1,16 @@
 <!-- This page is the template for meta-analyses -->
 <!--This file generates the login template-->
 <!--Yann David | Last modified: 28.12-->
-{% extends "base.html" %}
+{% extends "baseUser.html" %}
 {% block head %} 
 {{ super() }}
 {% endblock %}
 {% block content %} 
-<div class="jumbotron jumbotron-fluid">
-  <div class = "container">
-      <h1>{{ sheet.title }}</h1>
-      <legend class="border-bottom mb-4">{{ sheet.abstract }}</legend>
-  </div>
-</div> 
+<div class = "container">
+    <h1>{{ sheet.title }}</h1>
+    <legend class="border-bottom mb-4">{{ sheet.abstract }}</legend>
+</div>
+
 
 </div>
 

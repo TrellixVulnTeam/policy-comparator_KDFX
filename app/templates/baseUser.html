@@ -18,17 +18,10 @@
     <!-- Adding google font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     <!-- CSS link -->
-    <link rel="stylesheet" media="screen" href="../static/css/style.css">
+    <link rel="stylesheet" media="screen" href="{{ url_for('static', filename='css/style.css') }}">
+    
 </head>
-<header>
-    <!-- <nav>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/1oJXli3j_zsOLcdgDFftnMW9iOXDbFvTj/view?usp=sharing" target="_blank">CV</a></li>
-                <li><a href="https://fr.linkedin.com/in/ydavid" target="_blank">Linkedin</a></li>
-                <li><a href="mailto:yann.collindavid@gmail.com" target="_blank">Email me</a></li>
-            </ul>
-        </nav> -->
-</header>
+
 
 <body>
     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -42,7 +35,7 @@
     {% endwith %}
     <!-- Personal Presentation Part -->
     <div class="background">
-        <div class="presentation">
+        <div id="#header" class="presentation">
             <h1 class="site">
                 <a class="site" href="{{ url_for('main.index') }}">
                     <img src="../static/images/icone.svg" class="icon" alt="icon"> 
@@ -51,44 +44,82 @@
             </h1>
 
             <p class="subtitle">
-                Easy access to environmental policies impact evaluations meta-analyses.
+                Easy access to environmental policies impact evaluations meta-analyses
             </p>
-            <div class="selectPolicy">
+            <form class="selectPolicy" method="POST">
+                {{ selection.hidden_tag() }}
                 <span class="itemSelect">The effect of </span>
-                <select name="policy" class="itemSelect selector">
-                    <option value="">--a policy--</option>
-                    <option value="">Carbon Tax</option>
-                </select>
+                {% if selection.policy.errors %}
+                {{ selection.policy(class="itemSelect selector")}}
+                <div class="info-text fadeout error">
+                    {% for error in selection.policy.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ selection.policy(class="itemSelect selector")}}
+                {% endif %}
                 <span class="itemSelect"> on </span>
-                <select name="target" class="itemSelect selector">
-                    <option value="">--a target--</option>
-                    <option value="">CO2 emissions</option>
-                </select>
-                <button type="submit" class="info" form="form1" value="Compare!">
-                    Compare
-                    <span class="info-text">Select a policy and a target to find the associated meta analysis</span>
+                {% if selection.target.errors %}
+                {{ selection.target(class="itemSelect selector")}}
+                <div class="info-text fadeout error">
+                    {% for error in selection.target.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ selection.target(class="itemSelect selector")}}
+                {% endif %}                
+                
+                {{ selection.submit(class="info") }}
+                 <span class="info-text fadeout general">Select a policy and a target to find the associated meta analysis</span>
         
-                </button>
         
-        
-            </div>
+            </form>
             <p class>
             </p>
             <ul class="networkLinks">
         
-                <li><a href="{{ url_for('main.project') }}">How does it work?</a></li>
+                <li><a href="{{ url_for('main.project', _anchor='head') }}">How does it work?</a></li>
         
-                <li><a href="{{ url_for('main.project') }}">Discover the project</a></li>
+                <li><a href="{{ url_for('main.project',_anchor='head') }}">Discover the project</a></li>
             </ul>
             
         </div>
     </div>
     {% block content %}
     {% endblock %}
-    <!-- Projects presentation -->
-    <!-- <div class="projects">
-            <h1>Discover my projects</h1>
-        </div> -->
+ 
+     <script>
+         let policy_select = document.getElementById('policy');
+         let target_select = document.getElementById('target');
+         let reset = document.getElementById('remove');
+
+         function change_target() {
+                policy = policy_select.value;
+                fetch('/target/' + policy).then(function (response) {
+                    response.json().then(function (data) {
+                        let optionHTML = '';
+                        for (let target of data.targets) {
+                            optionHTML += '<option value="' + target + '">' + target + '</option>';
+                        }
+
+                        target_select.innerHTML = optionHTML;
+                    })
+                })
+            }
+
+            window.onload = function(){
+                if (!(policy_select.value === "--policy--")){
+                    change_target();
+                }
+            };
+
+            policy_select.onchange = function(){
+                change_target();
+            };    
+        
+     </script>   
 </body>
 <footer class="footerCustom">
     <p>
