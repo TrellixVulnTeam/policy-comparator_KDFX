@@ -121,7 +121,8 @@ div.background {
   line-height: 20px;
   width: 100px;
 }
-.info-text {
+
+.infoText {
   font-family: "Open Sans", Geneva, Tahoma, sans-serif;
   font-size: 0.7rem;
   font-style: normal;
@@ -133,18 +134,29 @@ div.background {
   padding: 5px 10px;
 
   /* Position the tooltip */
-  position: absolute;
-  z-index: 1;
 }
 
-.general {
-  margin-left: 10px;
-  margin-top: -5px;
+.i .general {
+  margin-left: -380px;
+  margin-top: 55px;
+  position: absolute;
+  z-index: 1;
+  visibility: hidden;
+  width: max-content;
+}
+
+.i:hover .general {
+  visibility: visible;
 }
 
 .error {
-  margin-left: 0px;
-  margin-top: 20px;
+  font-style: italic;
+  margin: 1px;
+}
+
+.errorDiv {
+  width: max-content;
+  margin: 2px auto 0px auto;
 }
 .fade-out {
   animation: fadeOut ease 8s;

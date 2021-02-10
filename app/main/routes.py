@@ -5,6 +5,7 @@ from flask.helpers import flash
 from app import db, bcrypt
 from app.models import Sheet
 from app.main.forms import MetaAnalysisSelect
+from app.factsheet.utils import url_sheet
 from app.main.utils import remove_duplicates
 
 main = Blueprint('main', __name__)
@@ -16,21 +17,22 @@ main = Blueprint('main', __name__)
 @main.route('/', methods=['GET', 'POST'])
 @main.route('/index', methods=['GET', 'POST'])
 def index():
-    sheets = Sheet.query.all()
+    sheets = Sheet.query.filter_by(publish=True).all()
     selection = MetaAnalysisSelect()
     # Only take unique values
     selection.policy.choices += remove_duplicates(
-        [sheet.policy for sheet in sheets])
+        [sheet.policy.title() for sheet in sheets])
     selection.target.choices += remove_duplicates(
-        [sheet.target for sheet in sheets])
+        [sheet.target.title() for sheet in sheets])
 
     if selection.validate_on_submit():
-        policy = selection.policy.data
-        target = selection.target.data
+        policy = selection.policy.data.lower()
+        target = selection.target.data.lower()
         name = policy + ' on ' + target
 
         factsheet = Sheet.query.filter_by(title=name).first()
-        return redirect(url_for('factsheet.sheet', fact_id=factsheet.id))
+        return redirect(url_for('factsheet.sheet',
+                                link=url_sheet(factsheet.id)))
 
     return render_template('/index.html',
                            selection=selection)
@@ -46,29 +48,31 @@ def index():
 #     return jsonify({'policies': policyObj})
 
 
-@main.route('/target/<policy>')
+@ main.route('/target/<policy>')
 def target(policy):
-    targets = Sheet.query.filter_by(policy=policy).all()
-    targetObj = [target.target for target in targets]
+    targets = Sheet.query.filter_by(policy=policy,
+                                    publish=True).all()
+    targetObj = [target.target.title() for target in targets]
 
     return jsonify({'targets': targetObj})
 
 
-@main.route('/project', methods=['GET', 'POST'])
+@ main.route('/project', methods=['GET', 'POST'])
 def project():
-    sheets = Sheet.query.all()
+    sheets = Sheet.query.filter_by(publish=True).all()
     selection = MetaAnalysisSelect()
     # Set option specified to have unique value of each policy/target
     selection.policy.choices += remove_duplicates(
-        [sheet.policy for sheet in sheets])
+        [sheet.policy.title() for sheet in sheets])
     selection.target.choices += remove_duplicates(
-        [sheet.target for sheet in sheets])
+        [sheet.target.title() for sheet in sheets])
 
     if selection.validate_on_submit():
-        policy = selection.policy.data
-        target = selection.target.data
+        policy = selection.policy.data.lower()
+        target = selection.target.data.lower()
         name = policy + ' on ' + target
 
         factsheet = Sheet.query.filter_by(title=name).first()
-        return redirect(url_for('factsheet.sheet', fact_id=factsheet.id))
+        return redirect(url_for('factsheet.sheet',
+                                link=url_sheet(factsheet.id)))
     return render_template('/project.html', selection=selection)

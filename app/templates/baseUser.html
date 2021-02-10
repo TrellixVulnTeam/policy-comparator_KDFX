@@ -52,31 +52,35 @@
                 <span class="itemSelect">The effect of </span>
                 {% if selection.policy.errors %}
                 {{ selection.policy(class="itemSelect selector")}}
-                <div class="info-text fadeout error">
-                    {% for error in selection.policy.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
+
                 {% else %}
                 {{ selection.policy(class="itemSelect selector")}}
                 {% endif %}
                 <span class="itemSelect"> on </span>
                 {% if selection.target.errors %}
                 {{ selection.target(class="itemSelect selector")}}
-                <div class="info-text fadeout error">
-                    {% for error in selection.target.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
+
                 {% else %}
                 {{ selection.target(class="itemSelect selector")}}
                 {% endif %}                
+                <span class="i">&#x1F6C8;
+                    <span class="infoText fadeout general">Select a policy and a target to find the associated meta analysis</span>
+                </span>
                 
+
                 {{ selection.submit(class="info") }}
-                 <span class="info-text fadeout general">Select a policy and a target to find the associated meta analysis</span>
-        
-        
             </form>
+            
+            <!-- Errors in the form appear beow search bar -->
+            <div class="errorDiv">
+                {% for error in selection.policy.errors %}
+                <span class="infoText error">{{ error }}</span>
+                {% endfor %}
+                {% for error in selection.target.errors %}
+                <span class="infoText error">{{ error }}</span>
+                {% endfor %}
+            </div>
+          
             <p class>
             </p>
             <ul class="networkLinks">
