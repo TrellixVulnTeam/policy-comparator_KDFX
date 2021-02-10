@@ -19,7 +19,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     <!-- CSS link -->
     <link rel="stylesheet" media="screen" href="{{ url_for('static', filename='css/style.css') }}">
-    
+    <!-- JS homepage -->
+    <script src="{{ url_for('static', filename = 'js/home.js') }}"></script>
 </head>
 
 
@@ -80,9 +81,9 @@
             </p>
             <ul class="networkLinks">
         
-                <li><a href="{{ url_for('main.project', _anchor='head') }}">How does it work?</a></li>
+                <li><a href="{{ url_for('main.project') }}">How does it work?</a></li>
         
-                <li><a href="{{ url_for('main.project',_anchor='head') }}">Discover the project</a></li>
+                <li><a href="{{ url_for('main.project') }}">Discover the project</a></li>
             </ul>
             
         </div>
@@ -91,33 +92,51 @@
     {% endblock %}
  
      <script>
-         let policy_select = document.getElementById('policy');
-         let target_select = document.getElementById('target');
-         let reset = document.getElementById('remove');
+        //  let policy_select = document.getElementById('policy');
+        //  let target_select = document.getElementById('target');
+        //  let reset = document.getElementById('remove');
 
-         function change_target() {
-                policy = policy_select.value;
-                fetch('/target/' + policy).then(function (response) {
-                    response.json().then(function (data) {
-                        let optionHTML = '';
-                        for (let target of data.targets) {
-                            optionHTML += '<option value="' + target + '">' + target + '</option>';
-                        }
+        //  function new_option(option) {
+        //      return '<option value="' + option + '">' + option + '</option>';
+        //  }
+        //  function change_target() {
+        //         policy = policy_select.value;
+        //         fetch('/target/' + policy).then(function (response) {
+        //             response.json().then(function (data) {
+        //                 let optionHTML = '';
+        //                 for (let target of data.targets) {
+        //                     optionHTML += new_option(target);
+        //                 }
 
-                        target_select.innerHTML = optionHTML;
-                    })
-                })
-            }
+        //                 target_select.innerHTML = optionHTML;
+        //             })
+        //         })
+        //     }
 
-            window.onload = function(){
-                if (!(policy_select.value === "--policy--")){
-                    change_target();
-                }
-            };
+        //     window.onload = function () {
+        //             if (window.location.pathname.includes('factsheet')) {
+        //                 let id_sheet = document.getElementsByClassName('container')[0].id;
+        //                 let sheet_policy = id_sheet.split('-')[0];
+        //                 let sheet_target = id_sheet.split('-')[1];
 
-            policy_select.onchange = function(){
-                change_target();
-            };    
+        //                 fetch('/target/' + sheet_policy).then(function (response) {
+        //                     response.json().then(function (data) {
+        //                         let optionHTML = ''; // Defining the options list
+        //                         optionHTML += new_option(sheet_target); // Define first option
+        //                         for (let target of data.targets) {
+        //                             if (!(target === sheet_target)) {
+        //                                 optionHTML += new_option(target);
+        //                             }
+        //                         }
+        //                         target_select.innerHTML = optionHTML;
+        //                     })
+        //                 })
+        //             }
+        //         };
+
+        //     policy_select.onchange = function(){
+        //         change_target();
+        //     };    
         
      </script>   
 </body>

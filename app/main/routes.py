@@ -5,7 +5,7 @@ from flask.helpers import flash
 from app import db, bcrypt
 from app.models import Sheet
 from app.main.forms import MetaAnalysisSelect
-from app.models import get_latest
+from app.main.utils import remove_duplicates
 
 main = Blueprint('main', __name__)
 
@@ -18,8 +18,11 @@ main = Blueprint('main', __name__)
 def index():
     sheets = Sheet.query.all()
     selection = MetaAnalysisSelect()
-    selection.policy.choices += [sheet.policy for sheet in sheets]
-    selection.target.choices += [sheet.target for sheet in sheets]
+    # Only take unique values
+    selection.policy.choices += remove_duplicates(
+        [sheet.policy for sheet in sheets])
+    selection.target.choices += remove_duplicates(
+        [sheet.target for sheet in sheets])
 
     if selection.validate_on_submit():
         policy = selection.policy.data
@@ -55,8 +58,11 @@ def target(policy):
 def project():
     sheets = Sheet.query.all()
     selection = MetaAnalysisSelect()
-    selection.policy.choices += [sheet.policy for sheet in sheets]
-    selection.target.choices += [sheet.target for sheet in sheets]
+    # Set option specified to have unique value of each policy/target
+    selection.policy.choices += remove_duplicates(
+        [sheet.policy for sheet in sheets])
+    selection.target.choices += remove_duplicates(
+        [sheet.target for sheet in sheets])
 
     if selection.validate_on_submit():
         policy = selection.policy.data

@@ -4,6 +4,7 @@ from flask import render_template, redirect, url_for
 from app import db, bcrypt
 from app.models import Sheet
 from app.main.forms import MetaAnalysisSelect
+from app.main.utils import remove_duplicates
 
 
 factsheet = Blueprint('factsheet', __name__)
@@ -18,9 +19,9 @@ def sheet(fact_id):
 
     # Other possible policies
     sheets = Sheet.query.all()
-    policies = [sheet.policy for sheet in sheets]
+    policies = remove_duplicates([sheet.policy for sheet in sheets])
     policies.remove(sheet_policy)
-    targets = [sheet.target for sheet in sheets]
+    targets = remove_duplicates([sheet.target for sheet in sheets])
     targets.remove(sheet_target)
 
     # Search Bar Options
