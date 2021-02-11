@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, login_manager
 from app.config import Config
-from flask_migrate import Migrate, migrate
+from flask_migrate import Migrate
 # Configuration
 
 db = SQLAlchemy()
