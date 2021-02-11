@@ -1,0 +1,14 @@
+<!--This file generates the Project Presentation template-->
+<!--Yann David | Last modified: 28.12-->
+{% extends "baseUser.html" %}{% block title %} The Project - {% endblock %}
+{% block head %} 
+{{ super() }}
+{% endblock %}
+{% block content %} 
+
+{% filter markdown %}
+{{ page.text }}
+# This is a test
+{% endfilter %}
+
+{% endblock %}

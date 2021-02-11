@@ -66,6 +66,7 @@ class Contributor(db.Model, UserMixin):
     result = db.relationship('Result', secondary=contributor_result,
                              backref=db.backref('contributor'),
                              lazy='dynamic')
+    admin = db.Column(db.Boolean, default=True)
 
     def __repr__(self):
         """
@@ -188,4 +189,14 @@ class Result(db.Model):
     standardError = db.Column(db.Float, nullable=False)  # Standard error
     sampleSize = db.Column(db.Integer, nullable=False)  # Sample size
 
-# Articles
+# Pages tables
+
+
+class Pages(db.Model):
+    __tablename__ = 'pages'
+    # Tool specific entries
+    id = db.Column(db.Integer, primary_key=True)
+    # Date of entry creation in database
+    text = db.Column(db.Text, nullable=False)
+    page = db.Column(db.String, nullable=False)
+    rank = db.Column(db.Integer, nullable=True)

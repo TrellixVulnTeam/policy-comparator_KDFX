@@ -3,8 +3,10 @@ from flask import Blueprint
 from flask import render_template, url_for, flash, redirect, request  # , abort
 # from flask_login.utils import login_required # Normally included below, commented to check it works
 from app import db, bcrypt
-from app.models import Result, Sheet, Contributor, Article, Author
-from app.contribution.forms import ArticleForm, AuthorForm, FactSheetForm, ListResultForm, ResultForm
+from app.models import Result, Sheet, Contributor, Article, Author, Pages
+from app.contribution.forms import (ArticleForm, AuthorForm,
+                                    FactSheetForm, ListResultForm,
+                                    ResultForm, PageForm)
 from flask_login import current_user,  login_required
 from datetime import date  # For post / update date
 
@@ -27,11 +29,46 @@ def contribute():
 # Page to update factsheet
 
 
+@contribution.route("/contribute/newpage", methods=['GET', 'POST'])
+@login_required
+def newpage():
+    if current_user.admin == False:
+        redirect(url_for('contribution.contribute'))
+    else:
+        form = PageForm()
+        if form.validate_on_submit():
+            page = Pages(page=form.title.data.lower(),
+                         text=form.text.data)
+            db.session.add(page)
+            db.session.commit()
+            return redirect(url_for('contribution.contribute'))
+        return render_template('/edit_page.html', form=form)
+
+
+@contribution.route("/contribute/editpage/<int:page_id>", methods=['GET', 'POST'])
+@login_required
+def editpage(page_id):
+    if current_user.admin == False:
+        redirect(url_for('contribution.contribute'))
+    else:
+        page = Pages.query.get_or_404(page_id)
+        form = PageForm()
+        if form.validate_on_submit():
+            page.page = form.title.data.lower()
+            page.text = form.text.data
+            db.session.add(page)
+            db.session.commit()
+            flash('Page was updated', 'success')
+            return redirect(url_for('contribution.contribute'))
+        elif request.method == 'GET':
+            form.title.data = page.page.title()
+            form.text.data = page.text
+        return render_template('/edit_page.html', form=form)
+
+
 @contribution.route("/contribute/editsheet/<int:fact_id>", methods=['GET', 'POST'])
 @login_required
 def edit_fact_sheet(fact_id):
-    sheet = Article.query.filter_by(id=8).delete()
-    db.session.commit()
     sheet = Sheet.query.get_or_404(fact_id)
     # if sheet.author != current_user:
     #     abort(403)

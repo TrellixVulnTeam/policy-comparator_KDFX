@@ -10,7 +10,7 @@
     <!-- Webpage title -->
     {% block head %}
     <title>
-        {% block title %}{% endblock %}Environmental Policies Comparator
+        {% block title %}{% endblock %}EPC
     </title>
     {% endblock %}
     <meta name="viewport" content="width=device-width">
@@ -49,6 +49,9 @@
             </p>
             <form class="selectPolicy" method="POST">
                 {{ selection.hidden_tag() }}
+                <span class="i">&#x1F6C8;
+                    <span class="infoText fadeout general">Select a policy and a target to find the associated meta analysis</span>
+                </span>
                 <span class="itemSelect">The effect of </span>
                 {% if selection.policy.errors %}
                 {{ selection.policy(class="itemSelect selector")}}
@@ -63,9 +66,7 @@
                 {% else %}
                 {{ selection.target(class="itemSelect selector")}}
                 {% endif %}                
-                <span class="i">&#x1F6C8;
-                    <span class="infoText fadeout general">Select a policy and a target to find the associated meta analysis</span>
-                </span>
+               
                 
 
                 {{ selection.submit(class="info") }}
@@ -85,7 +86,7 @@
             </p>
             <ul class="networkLinks">
         
-                <li><a href="{{ url_for('main.project') }}">How does it work?</a></li>
+                <li><a href="{{ url_for('main.methodology') }}">How does it work?</a></li>
         
                 <li><a href="{{ url_for('main.project') }}">Discover the project</a></li>
             </ul>

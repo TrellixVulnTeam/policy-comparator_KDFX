@@ -135,14 +135,17 @@ div.background {
 
   /* Position the tooltip */
 }
+.i{
+  margin-left: -20px;
+}
 
 .i .general {
-  margin-left: -380px;
-  margin-top: 55px;
+  margin-left: -185px;
+  margin-top: -3px;
   position: absolute;
   z-index: 1;
   visibility: hidden;
-  width: max-content;
+  width: 150px;
 }
 
 .i:hover .general {
@@ -151,72 +154,23 @@ div.background {
 
 .error {
   font-style: italic;
-  margin: 1px;
+  display: inline-block;
+  width: max-content;
+
 }
 
 .errorDiv {
-  width: max-content;
-  margin: 2px auto 0px auto;
-}
-.fade-out {
-  animation: fadeOut ease 8s;
-  -webkit-animation: fadeOut ease 8s;
-  -moz-animation: fadeOut ease 8s;
-  -o-animation: fadeOut ease 8s;
-  -ms-animation: fadeOut ease 8s;
+  /* overflow: hidden;  */
+  text-align: center;
+  min-height: 1.7rem;
 }
 
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@-moz-keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@-webkit-keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@-o-keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@-ms-keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-.selector select {
+/* .selector select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   /* Add some styling */
-}
+} */
 
 .info:hover,
 .info:active {

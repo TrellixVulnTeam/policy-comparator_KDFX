@@ -1,0 +1,26 @@
+<!--This file generates Fact-Sheet Creation template-->
+<!--Yann David | Last modified: 24.10-->
+{% extends "base.html" %}{% block title %} Contribute - {% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{{ pagedown.include_pagedown() }}
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1>Hello {{ current_user.name }} {{ current_user.surname }}.</h1>
+    </div>
+</div>
+
+<div class="container">
+    <h2>Edit the page</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.title() }}
+        {{ form.text(rows=10) }}
+        {{ form.submit }}
+    </form>
+    
+</div>
+
+{% endblock %}
