@@ -48,7 +48,8 @@ pickleshare==0.7.5
 Pillow==8.0.1
 prometheus-client==0.9.0
 prompt-toolkit==3.0.14
-psycopg==2-2.8.6
+psycopg2==2.8.6
+psycopg2-binary==2.8.6
 ptyprocess==0.7.0
 pycodestyle==2.6.0
 pycparser==2.20
