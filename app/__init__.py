@@ -13,7 +13,8 @@ migrate = Migrate()
 bcrypt = Bcrypt()
 login_manager = LoginManager()
 login_manager.login_view = 'users.login'
-login_manager.login_message_category = 'danger' # Class of the message when need to login to access page
+# Class of the message when need to login to access page
+login_manager.login_message_category = 'danger'
 
 
 def create_app(config_class=Config):

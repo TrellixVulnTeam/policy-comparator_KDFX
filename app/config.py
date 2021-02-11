@@ -1,3 +1,8 @@
+from os import environ
+
+
 class Config:
-    SECRET_KEY = 'b1f6cbe23307106cd229b9cfcaea5364'
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///data.db'
+    SECRET_KEY = environ.get('SECRET_KEY')
+    SQLALCHEMY_DATABASE_URI = environ.get('DATABASE_URL')
+    ENV = environ.get('FLASK_ENV')
+    DEBUG = environ.get('DEBUG')

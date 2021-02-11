@@ -6,13 +6,15 @@
 {{ super() }}
 {% endblock %}
 {% block content %} 
-<div class = "container" id="{{ sheet.policy +'-'+ sheet.target }}">
-    <h1>{{ sheet.title }}</h1>
+
+{% if current_user.is_authenticated %}
+Hi {{ current_user.name }}!
+<a href="{{ url_for('contribution.edit_fact_sheet',fact_id=sheet.id) }}">Edit</a>
+{% endif %}
+
+<div class="container" id="{{ sheet.policy +'-'+ sheet.target }}">
+    <h2>The Effect of {{ sheet.title.title() }}</h2>
     <legend class="border-bottom mb-4">{{ sheet.abstract }}</legend>
 </div>
-
-
-</div>
-
 {% endblock %}
 

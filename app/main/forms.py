@@ -13,7 +13,7 @@ class MetaAnalysisSelect(FlaskForm):
                          render_kw={'placeholder': "--target--"},
                          choices=["--target--"],
                          validators=[DataRequired()])
-    submit = SubmitField("Submit")
+    submit = SubmitField("Analyse")
 
     def validate_policy(self, policy):
         if policy.data == "--policy--":

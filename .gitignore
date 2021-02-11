@@ -3,3 +3,6 @@ policy-env/
 
 # Ignore __pycache__
 __pycache__
+
+# Ignore .env
+.env    
