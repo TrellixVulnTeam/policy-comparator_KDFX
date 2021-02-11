@@ -50,6 +50,7 @@ article_author = db.Table('articleAuthor',
 
 
 class Contributor(db.Model, UserMixin):
+    __tablename__ = 'contributor'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     surname = db.Column(db.String, nullable=False)
@@ -75,6 +76,7 @@ class Contributor(db.Model, UserMixin):
 
 # C.2. Fact-Sheet database
 class Sheet(db.Model):
+    __tablename__ = 'sheet'
     # Tool specific entries
     id = db.Column(db.Integer, primary_key=True)
     # Date of entry creation in database
@@ -116,6 +118,7 @@ def get_latest(limit: int = 3):
 
 # C.3. Source Article Database
 class Article(db.Model):
+    __tablename__ = 'article'
     # Tool specific entries
     id = db.Column(db.Integer, primary_key=True)
     # Date of entry creation in database
@@ -138,6 +141,7 @@ class Article(db.Model):
 
 # C.4. Authors database
 class Author(db.Model):
+    __tablename__ = 'author'
     # Tool specific entries
     id = db.Column(db.Integer, primary_key=True)
     # Date of entry creation in database
@@ -158,6 +162,7 @@ class Author(db.Model):
 
 
 class Result(db.Model):
+    __tablename__ = 'result'
     # Tool specific entries
     id = db.Column(db.Integer, primary_key=True)
     # Date of entry creation in database
