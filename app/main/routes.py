@@ -85,6 +85,10 @@ def target(policy):
 
 @ main.route('/project', methods=['GET', 'POST'])
 def project():
+    # LOADING THE PROJECT PAGE MARKDOWN
+    page = Pages.query.filter_by(page="project").first()
+
+    # LOADING THE RESEARCH BAR OPTIONS
     sheets = Sheet.query.filter_by(publish=True).all()
     selection = MetaAnalysisSelect()
     # Set option specified to have unique value of each policy/target
@@ -101,4 +105,5 @@ def project():
         factsheet = Sheet.query.filter_by(title=name).first()
         return redirect(url_for('factsheet.sheet',
                                 link=url_sheet(factsheet.id)))
-    return render_template('/project.html', selection=selection)
+    return render_template('/project.html', selection=selection,
+                           page=page)

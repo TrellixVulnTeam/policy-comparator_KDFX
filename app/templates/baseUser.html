@@ -49,10 +49,13 @@
             </p>
             <form class="selectPolicy" method="POST">
                 {{ selection.hidden_tag() }}
-                <span class="i">&#x1F6C8;
-                    <span class="infoText fadeout general">Select a policy and a target to find the associated meta analysis</span>
+                <div  class="itemSelect top">
+                  <span class="i">&#x1F6C8;
+                    <span class="infoText general">Select a policy and a target to find the associated meta analysis</span>
                 </span>
-                <span class="itemSelect">The effect of </span>
+                <span>The effect of </span>  
+                </div>
+                
                 {% if selection.policy.errors %}
                 {{ selection.policy(class="itemSelect selector")}}
 
@@ -69,7 +72,7 @@
                
                 
 
-                {{ selection.submit(class="info") }}
+                {{ selection.submit(class="submit") }}
             </form>
             
             <!-- Errors in the form appear beow search bar -->

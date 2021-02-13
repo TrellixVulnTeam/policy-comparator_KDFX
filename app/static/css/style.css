@@ -22,38 +22,59 @@ body {
   /* height of your footer */
 }
 
-/* Title options */
+/* Website Title options */
+/* Only used for website name at page top*/
 h1 {
-  /* defining font zie relative to body font size */
-  font-size: 1.6em;
+  /* defining font size relative to body font size */
+  font-size: 1.79em;
+  /* font weight */
   font-weight: 800;
-  /* margin-top: 0px; */
+  /* Default margin below title */
   margin-bottom: 10px;
+  /* Automatically centered */
   text-align: center;
 }
 
-/* a h1.site {
+/* Background div controlling header gradient */
+div.background {
+  /* Setting text color to white */
   color: white;
-  text-decoration: none;
-} */
+  /*  Setting the gradient  */
+  background: linear-gradient(
+    to right top,
+    rgb(8, 87, 97) 35%,
+    rgb(7, 100, 24) 100%
+  );
+  /* Anchoring top to 0 */
+  top: 0px;
+  /* Setting width to 100% of window size */
+  width: 100%;
+}
+
+/* Div of header content within background */
+div.presentation {
+  padding: 80px 0px 30px 0px;
+  /* Auto margin allows centering */
+  margin: 0px auto 0px auto;
+}
+
+/* Link added to website name at page top */
 a.site {
-  /* removing bottom line of links in header */
+  /* setting title color to white */
   color: white;
+  /* removing bottom line of links in header */
   text-decoration: none;
 }
 a:hover .icon {
-  /* removing bottom line of links in header */
+  /* increase EPC icon on hover */
   transform: scale(1.1);
 }
 h1 a:hover {
-  /* removing bottom line of links in header */
-  font-size: 1.61rem;
+  /* increase website name on hover */
+  font-size: 1.8rem;
 }
-.site a:link,
-.site a:visited {
-  /* removing bottom line of links in header */
-  text-decoration: none;
-}
+
+/* Website subtitle underneath website name */
 p.subtitle {
   font-size: 1.1rem;
   text-align: center;
@@ -61,6 +82,7 @@ p.subtitle {
   margin-bottom: 20px;
 }
 
+/* Website icon - left of website name */
 .icon {
   height: 1.6rem;
   width: 1.6rem;
@@ -69,37 +91,32 @@ p.subtitle {
   margin-right: 5px;
 }
 
-div.container {
-  margin: 30px 20%;
-}
-
-div.background {
-  color: white;
-  background: linear-gradient(
-    to right top,
-    rgb(8, 87, 97) 35%,
-    rgb(7, 100, 24) 100%
-  );
-  top: 0px;
-  width: 100%;
-  border: 1px solid transparent;
-}
-
+/* Policy search bar settings */
+/* Settings partly defined in the media section */
 .selectPolicy {
+  /* Set width to max content */
   width: max-content;
+  /* centers the search bar */
   margin: 50px auto 0px auto;
+  /* text color */
   color: white;
+  /* background color of the bar */
   background-color: rgb(4, 52, 58);
-  padding-left: 30px;
+  /* padding-left: 30px; */
   /* border: rgb(4, 52, 58) solid 1px; */
+  display: flex;
+  /* flex direction changes with media */
 }
 
+/* Class for items in the search bar */
 .itemSelect {
-  margin: 0px 8px 0px 8px;
-  min-height: fit-content;
+  /* vertically center content */
+  margin: auto 8px;
 }
 
+/* Class for polic/target selector in search bar */
 .itemSelect.selector {
+  /* removing select appearance */
   appearance: none;
   outline: none;
   border: none;
@@ -112,14 +129,25 @@ div.background {
   padding-bottom: 1px;
 }
 
-.info {
+/* Adjusting text lince */
+span.itemSelect {
+  padding-bottom: 3px;
+}
+
+/* Submit button info */
+.submit {
   background-color: rgb(7, 77, 87);
   color: white;
   padding: 1rem;
   margin: 0px;
   border: none;
   line-height: 20px;
-  width: 100px;
+}
+.submit:hover,
+.submit:active {
+  background-color: rgb(9, 93, 106);
+  font-size: 0.9rem;
+  /* padding: 0.8rem; */
 }
 
 .infoText {
@@ -132,16 +160,15 @@ div.background {
   text-align: left;
   border-radius: 6px;
   padding: 5px 10px;
-
-  /* Position the tooltip */
 }
-.i{
-  margin-left: -20px;
+.i {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .i .general {
   margin-left: -185px;
-  margin-top: -3px;
+  margin-top: -15px;
   position: absolute;
   z-index: 1;
   visibility: hidden;
@@ -156,51 +183,13 @@ div.background {
   font-style: italic;
   display: inline-block;
   width: max-content;
-
+  margin-top: 2px;
 }
 
 .errorDiv {
   /* overflow: hidden;  */
   text-align: center;
   min-height: 1.7rem;
-}
-
-/* .selector select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  /* Add some styling */
-} */
-
-.info:hover,
-.info:active {
-  background-color: rgb(9, 93, 106);
-  font-size: 0.9rem;
-  /* padding: 0.8rem; */
-}
-
-div.presentation {
-  /* position relative to ancestor element */
-  position: relative;
-  /* ensure the presentation box is centered */
-  margin: 80px auto 0px auto;
-
-  /* Padding element inside */
-  padding: 30px 40px 40px 40px;
-
-  /* border radius */
-  /* border-radius: 10px; */
-  /* temporary border to observe stuff */
-  /* border: 2px solid black; */
-  /* background-color: rgba(33, 28, 33, 0.33); */
-}
-
-/* Defining links parameters in paragraphs */
-
-p > br {
-  display: block;
-  content: ""; /*option added for spacing to work on chrome*/
-  margin-bottom: 30px;
 }
 
 ul.networkLinks {
@@ -250,6 +239,35 @@ ul.networkLinks li a:active {
   font-weight: 900;
 }
 
+/* Container div for content */
+div.container {
+  margin: 0px auto;
+  display: grid;
+  row-gap: 80px;
+  column-gap: 40px;
+}
+
+.container h2 {
+  font-size: 1.8rem;
+  text-align: left;
+  margin-top: 70px;
+  margin-bottom: -20px;
+  text-transform: uppercase;
+}
+
+.container h3 {
+  color: rgb(9, 93, 106);
+  font-size: 1.6rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+p > br {
+  display: block;
+  content: ""; /*option added for spacing to work on chrome*/
+  margin-bottom: 30px;
+}
+
 .footerCustom {
   text-align: center;
   position: absolute;
@@ -257,19 +275,136 @@ ul.networkLinks li a:active {
   width: 100%;
   padding-bottom: 2.5rem;
 }
+
+.footerCustom a {
+  text-decoration: none;
+  color: rgb(8, 87, 97);
+}
+
+.footerCustom a:hover {
+  text-decoration: underline;
+}
+
 /*********************  Large devices *****************************/
-@media (min-width: 770px) {
+@media (min-width: 951px) {
   div.presentation {
     /* box width */
     width: 800px;
   }
-  .identity {
-    width: 30%;
-    float: right;
+  .selectPolicy {
+    flex-direction: row;
   }
-  .selfPresentation {
-    float: left;
-    width: 60%;
+  .submit {
+    width: 80px;
+  }
+
+  /* Container div for content */
+  div.container {
+    width: 900px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-flow: dense;
+  }
+
+  .container h2 {
+    font-size: 1.8rem;
+    text-align: left;
+    margin-top: 70px;
+    margin-bottom: -20px;
+    grid-column: 1 / 6;
+    text-transform: uppercase;
+  }
+
+  .container h3 {
+    color: rgb(9, 93, 106);
+    font-size: 1.6rem;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+  /* Even header + paragraph */
+  .container h3 {
+    grid-column: 1/3;
+    width: fit-content;
+    margin: auto auto;
+  }
+  .container h3 ~ *:not(h3):not(h2) {
+    grid-column: 3/6;
+    text-align: justify;
+    line-height: 2rem;
+  }
+
+  /* Odd header + paragraph */
+  .container h3:nth-of-type(2n) {
+    grid-column: 4/6;
+    margin: auto auto;
+  }
+
+  .container h3:nth-of-type(2n) ~ *:not(h2):not(h3) {
+    grid-column: 1/4;
+    line-height: 2rem;
+    text-align: justify;
+  }
+}
+
+@media (min-width: 770px) and (max-width: 950px) {
+  div.presentation {
+    /* box width */
+    width: 800px;
+  }
+  .selectPolicy {
+    flex-direction: row;
+  }
+  .submit {
+    width: 80px;
+  }
+
+  /* Container div for content */
+  div.container {
+    width: fit-content;
+    margin: 0px 50px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-flow: dense;
+    row-gap: 80px;
+    column-gap: 40px;
+  }
+
+  .container h2 {
+    font-size: 1.8rem;
+    text-align: left;
+    margin-top: 70px;
+    margin-bottom: -20px;
+    grid-column: 1 / 6;
+    text-transform: uppercase;
+  }
+
+  .container h3 {
+    color: rgb(9, 93, 106);
+    font-size: 1.6rem;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+  /* Even header + paragraph */
+  .container h3 {
+    grid-column: 1/3;
+    width: fit-content;
+    margin: auto auto;
+  }
+  .container h3 ~ *:not(h3):not(h2) {
+    grid-column: 3/6;
+    text-align: justify;
+    line-height: 2rem;
+  }
+
+  /* Odd header + paragraph */
+  .container h3:nth-of-type(2n) {
+    grid-column: 4/6;
+    margin: auto auto;
+  }
+
+  .container h3:nth-of-type(2n) ~ *:not(h2):not(h3) {
+    grid-column: 1/4;
+    line-height: 2rem;
+    text-align: justify;
   }
 }
 
@@ -280,18 +415,57 @@ ul.networkLinks li a:active {
     width: 90%;
   }
 
-  .identity {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 150px;
-    height: auto;
-    margin-bottom: 30px;
+  .selectPolicy {
+    width: 80%;
+    flex-direction: column;
+    justify-content: center;
   }
-  img.imagePresentation {
-    display: block;
+
+  .itemSelect {
     text-align: center;
-    max-width: 180px;
-    height: auto;
+    margin-bottom: 15px;
+  }
+
+  .i {
+    text-align: center;
+  }
+
+  .itemSelect.top {
+    margin-top: 15px;
+  }
+
+  /* Container div for content */
+  div.container {
+    width: 90%;
+    margin: 0px auto;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-flow: dense;
+    row-gap: 40px;
+  }
+
+  .container h2 {
+    font-size: 1.8rem;
+    text-align: left;
+    margin-top: 70px;
+    margin-bottom: -20px;
+    grid-column: 1;
+    text-transform: uppercase;
+  }
+
+  .container h3 {
+    color: rgb(9, 93, 106);
+    font-size: 1.6rem;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+  /* Even header + paragraph */
+  .container h3 {
+    width: fit-content;
+    margin: auto auto;
+  }
+  .container h3 ~ *:not(h3):not(h2) {
+    text-align: justify;
+    line-height: 2rem;
   }
 }
