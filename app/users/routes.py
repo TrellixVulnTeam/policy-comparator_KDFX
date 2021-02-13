@@ -24,8 +24,7 @@ def register():
         hashed_paswword = bcrypt.generate_password_hash(
             form.password.data).decode('utf-8')
         contributor = Contributor(name=form.name.data, surname=form.surname.data,
-                                  email=form.email.data, password=hashed_paswword,
-                                  access='admin')
+                                  email=form.email.data, password=hashed_paswword)
         db.session.add(contributor)
         db.session.commit()
         flash(f'Hello {form.name.data} {form.surname.data}, you have successfully registered! Thank you, you will soon here from us',
