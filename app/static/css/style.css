@@ -321,12 +321,12 @@ p > br {
     text-transform: uppercase;
   }
   /* Even header + paragraph */
-  .container h3 {
+  .container h3:nth-of-type(2n + 1) {
     grid-column: 1/3;
     width: fit-content;
     margin: auto auto;
   }
-  .container h3 ~ *:not(h3):not(h2) {
+  .container h3:nth-of-type(2n + 1) + p {
     grid-column: 3/6;
     text-align: justify;
     line-height: 2rem;
@@ -338,7 +338,7 @@ p > br {
     margin: auto auto;
   }
 
-  .container h3:nth-of-type(2n) ~ *:not(h2):not(h3) {
+  .container h3:nth-of-type(2n) + p {
     grid-column: 1/4;
     line-height: 2rem;
     text-align: justify;
