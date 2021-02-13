@@ -7,6 +7,7 @@ from app.contribution.forms import (ArticleForm, AuthorForm,
                                     FactSheetForm, ListResultForm,
                                     ResultForm, PageForm)
 from flask_login import current_user,  login_required
+from app.users.utils import admin_required
 
 from datetime import date  # For post / update date
 
@@ -31,18 +32,16 @@ def contribute():
 
 @contribution.route("/contribute/newpage", methods=['GET', 'POST'])
 @login_required
+@admin_required
 def newpage():
-    if current_user.admin == False:
-        redirect(url_for('contribution.contribute'))
-    else:
-        form = PageForm()
-        if form.validate_on_submit():
-            page = Pages(page=form.title.data.lower(),
-                         text=form.text.data)
-            db.session.add(page)
-            db.session.commit()
-            return redirect(url_for('contribution.contribute'))
-        return render_template('/edit_page.html', form=form)
+    form = PageForm()
+    if form.validate_on_submit():
+        page = Pages(page=form.title.data.lower(),
+                     text=form.text.data)
+        db.session.add(page)
+        db.session.commit()
+        return redirect(url_for('contribution.contribute'))
+    return render_template('/edit_page.html', form=form)
 
 
 @contribution.route("/contribute/editpage/<int:page_id>", methods=['GET', 'POST'])
