@@ -128,6 +128,7 @@ p.subtitle {
   height: fit-content;
   padding-bottom: 1px;
   display: block;
+  text-align-last: center;
 }
 
 /* Adjusting text lince */
