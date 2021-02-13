@@ -127,6 +127,7 @@ p.subtitle {
   text-decoration: underline dotted;
   height: fit-content;
   padding-bottom: 1px;
+  display: block;
 }
 
 /* Adjusting text lince */
