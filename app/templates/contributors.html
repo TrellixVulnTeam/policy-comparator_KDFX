@@ -1,0 +1,13 @@
+<!--This is the homepage template-->
+<!--Yann David | Last modified: 28.12-->
+{% extends "base.html" %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+
+{% for user in users %}
+<h1>{{user.name}} - {{ user.roles[0].name }}</h1>
+{% endfor %}
+
+{% endblock %}

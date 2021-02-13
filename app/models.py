@@ -2,7 +2,6 @@ from sqlalchemy.orm import backref
 from sqlalchemy.sql.schema import Column
 from app import db, login_manager
 from flask_login import UserMixin
-
 # A. Login function
 
 
@@ -44,6 +43,7 @@ article_author = db.Table('articleAuthor',
                                     db.ForeignKey('author.id')),
                           )
 
+
 # C. Creation of the databases
 
 # C.1. Contributor Database
@@ -66,7 +66,7 @@ class Contributor(db.Model, UserMixin):
     result = db.relationship('Result', secondary=contributor_result,
                              backref=db.backref('contributor'),
                              lazy='dynamic')
-    admin = db.Column(db.Boolean, default=True)
+    roles = db.relationship('Role', secondary='contributor_roles')
 
     def __repr__(self):
         """
@@ -74,8 +74,28 @@ class Contributor(db.Model, UserMixin):
         """
         return f"Contributor: {self.name} {self.surname}"
 
+# Define the Role data-model
+
+
+class Role(db.Model):
+    __tablename__ = 'roles'
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(50), unique=True)
+
+# Define the UserRoles association table
+
+
+class ContributorRoles(db.Model):
+    __tablename__ = 'contributor_roles'
+    id = db.Column(db.Integer(), primary_key=True)
+    user_id = db.Column(db.Integer(), db.ForeignKey(
+        'contributor.id', ondelete='CASCADE'))
+    role_id = db.Column(db.Integer(), db.ForeignKey(
+        'roles.id', ondelete='CASCADE'))
 
 # C.2. Fact-Sheet database
+
+
 class Sheet(db.Model):
     __tablename__ = 'sheet'
     # Tool specific entries
