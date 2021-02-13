@@ -6,7 +6,7 @@ from flask_login import current_user
 def admin_required(f):
     @wraps(f)
     def wrap(*args, **kwargs):
-        if "admin" in [role.name for role in current_user.roles]:
+        if current_user.access == "admin":
             return f(*args, **kwargs)
         else:
             flash("You need to be an admin to view this page.")

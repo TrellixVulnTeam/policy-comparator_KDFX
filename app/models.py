@@ -56,6 +56,7 @@ class Contributor(db.Model, UserMixin):
     surname = db.Column(db.String, nullable=False)
     password = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False, unique=True)
+    access = db.Column(db.String,  nullable=False, default='contributor')
     # Creation of the relation between contributors and sheets
     sheet = db.relationship('Sheet', secondary=contributor_sheet,
                             backref=db.backref('contributor'),
@@ -66,7 +67,6 @@ class Contributor(db.Model, UserMixin):
     result = db.relationship('Result', secondary=contributor_result,
                              backref=db.backref('contributor'),
                              lazy='dynamic')
-    roles = db.relationship('Role', secondary='contributor_roles')
 
     def __repr__(self):
         """
@@ -74,26 +74,7 @@ class Contributor(db.Model, UserMixin):
         """
         return f"Contributor: {self.name} {self.surname}"
 
-# Define the Role data-model
-
-
-class Role(db.Model):
-    __tablename__ = 'roles'
-    id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(50), unique=True)
-
-# Define the UserRoles association table
-
-
-class ContributorRoles(db.Model):
-    __tablename__ = 'contributor_roles'
-    id = db.Column(db.Integer(), primary_key=True)
-    user_id = db.Column(db.Integer(), db.ForeignKey(
-        'contributor.id', ondelete='CASCADE'))
-    role_id = db.Column(db.Integer(), db.ForeignKey(
-        'roles.id', ondelete='CASCADE'))
-
-# C.2. Fact-Sheet database
+# Fact sheet
 
 
 class Sheet(db.Model):

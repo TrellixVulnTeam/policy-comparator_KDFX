@@ -4,7 +4,7 @@ from flask import current_app, Blueprint
 from flask import render_template, url_for, flash, redirect, request
 from flask_login.utils import login_required, logout_user, login_user
 from app import db, bcrypt
-from app.models import Contributor, Role
+from app.models import Contributor
 from app.users.forms import RegistrationForm, LoginForm, UpdateAccountForm
 from flask_login import current_user
 from flask_user import roles_required
@@ -25,8 +25,8 @@ def register():
         hashed_paswword = bcrypt.generate_password_hash(
             form.password.data).decode('utf-8')
         contributor = Contributor(name=form.name.data, surname=form.surname.data,
-                                  email=form.email.data, password=hashed_paswword)
-        contributor.roles.append(Role(name='admin'))
+                                  email=form.email.data, password=hashed_paswword,
+                                  access='admin')
         db.session.add(contributor)
         db.session.commit()
         flash(f'Hello {form.name.data} {form.surname.data}, you have successfully registered! Thank you, you will soon here from us',
@@ -68,8 +68,6 @@ def contributors():
 
 @users.route("/logout")
 def logout():
-    db.session.delete(current_user)
-    db.session.commit()
     logout_user()
     flash('You are now logged out', 'success')
     return redirect(url_for('main.index'))

@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 27c1671f61a7
+Revision ID: 238602340fc1
 Revises: 
-Create Date: 2021-02-11 16:32:28.088069
+Create Date: 2021-02-13 16:42:46.003262
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '27c1671f61a7'
+revision = '238602340fc1'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -45,8 +45,16 @@ def upgrade():
     sa.Column('surname', sa.String(), nullable=False),
     sa.Column('password', sa.String(), nullable=False),
     sa.Column('email', sa.String(), nullable=False),
+    sa.Column('access', sa.String(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
+    )
+    op.create_table('pages',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('text', sa.Text(), nullable=False),
+    sa.Column('page', sa.String(), nullable=False),
+    sa.Column('rank', sa.Integer(), nullable=True),
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('sheet',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -116,6 +124,7 @@ def downgrade():
     op.drop_table('contributorArticle')
     op.drop_table('articleAuthor')
     op.drop_table('sheet')
+    op.drop_table('pages')
     op.drop_table('contributor')
     op.drop_table('author')
     op.drop_table('article')

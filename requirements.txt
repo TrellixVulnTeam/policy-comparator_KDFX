@@ -25,11 +25,6 @@ Flask-SQLAlchemy==2.4.4
 Flask-WTF==0.14.3
 flask-pagedown==0.3.0
 Flask-Markdown==0.3
-Flask-Mail==0.9.1
-blinker==1.4
-cryptography==3.4.4
-flask-user==1.0.2.2
-passlib==1.7.4
 markdown==3.3.3
 Flask-Misaka==1.0.0 
 misaka==2.1.1

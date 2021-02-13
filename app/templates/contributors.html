@@ -7,7 +7,7 @@
 {% block content %}
 
 {% for user in users %}
-<h1>{{user.name}} - {{ user.roles[0].name }}</h1>
+<h1>{{user.name}} - {{ user.access }}</h1>
 {% endfor %}
 
 {% endblock %}
