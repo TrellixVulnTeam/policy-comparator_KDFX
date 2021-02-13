@@ -7,7 +7,6 @@ from app import db, bcrypt
 from app.models import Contributor
 from app.users.forms import RegistrationForm, LoginForm, UpdateAccountForm
 from flask_login import current_user
-from flask_user import roles_required
 from datetime import date  # For post / update date
 from jinja2 import Template
 from app.users.utils import admin_required
