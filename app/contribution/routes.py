@@ -46,23 +46,21 @@ def newpage():
 
 @contribution.route("/contribute/editpage/<int:page_id>", methods=['GET', 'POST'])
 @login_required
+@admin_required
 def editpage(page_id):
-    if current_user.admin == False:
-        redirect(url_for('contribution.contribute'))
-    else:
-        page = Pages.query.get_or_404(page_id)
-        form = PageForm()
-        if form.validate_on_submit():
-            page.page = form.title.data.lower()
-            page.text = form.text.data
-            db.session.add(page)
-            db.session.commit()
-            flash('Page was updated', 'success')
-            return redirect(url_for('contribution.contribute'))
-        elif request.method == 'GET':
-            form.title.data = page.page.title()
-            form.text.data = page.text
-        return render_template('/edit_page.html', form=form)
+    page = Pages.query.get_or_404(page_id)
+    form = PageForm()
+    if form.validate_on_submit():
+        page.page = form.title.data.lower()
+        page.text = form.text.data
+        db.session.add(page)
+        db.session.commit()
+        flash('Page was updated', 'success')
+        return redirect(url_for('contribution.contribute'))
+    elif request.method == 'GET':
+        form.title.data = page.page.title()
+        form.text.data = page.text
+    return render_template('/edit_page.html', form=form)
 
 
 @contribution.route("/contribute/editsheet/<int:fact_id>", methods=['GET', 'POST'])
