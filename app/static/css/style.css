@@ -114,6 +114,12 @@ p.subtitle {
   margin: auto 8px;
 }
 
+select .selctor {
+  text-align-last: center;
+  text-align: center;
+  -ms-text-align-last: center;
+  -moz-text-align-last: center;
+}
 /* Class for polic/target selector in search bar */
 .itemSelect.selector {
   /* removing select appearance */
@@ -128,7 +134,6 @@ p.subtitle {
   height: fit-content;
   padding-bottom: 1px;
   display: block;
-  text-align-last: center;
 }
 
 /* Adjusting text lince */
