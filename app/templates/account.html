@@ -1,19 +1,21 @@
 <!--This file generates the account landing page template-->
-<!--Yann David | Last modified: 28.12-->
+<!--Yann David | Last modified: 28.0.2.21 -->
 {% extends "base.html" %} {% block title %} Account - {% endblock %}
 {% block head %} 
 {{ super() }}
 {% endblock %}
 
 {% block content %} 
+
+<!-- 
 <div class="jumbotron jumbotron-fluid">
   <div class = "container">
       <h1>Hello {{ current_user.name }} {{ current_user.surname }}.</h1>
       <legend class="border-bottom mb-4">You can change your account parameters here.</legend>
   </div>
 </div> 
-
-<div class="container">
+ -->
+<!-- <div class="container">
   <form method="POST" action="">
     {{ form.hidden_tag() }}
     <fieldset class="form-group">
@@ -62,5 +64,5 @@
       {{ form.submit(class="btn btn-outline-info") }}
     </div>
   </form>
-</div>
+</div> -->
 {% endblock %}

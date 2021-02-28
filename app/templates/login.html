@@ -4,15 +4,18 @@
 {% block head %} 
 {{ super() }}
 {% endblock %}
+
+
+
 {% block content %} 
-<div class="jumbotron jumbotron-fluid">
-  <div class = "container">
+
+  <div class = "">
       <h1>Login to your account</h1>
-      <legend class="border-bottom mb-4">Thank you for helping!</legend>
+      <legend>Thank you for helping!</legend>
   </div>
 </div> 
 
-<div class="container">
+<div class="">
   <form method="POST" action="">
     {{ form.hidden_tag() }}
     <fieldset class="form-group">

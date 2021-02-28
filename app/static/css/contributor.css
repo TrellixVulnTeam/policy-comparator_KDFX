@@ -1,31 +1,82 @@
-/* Css reset */
+/* Contributor Interface css - extends home.css */
+/* Edited by Yann David - February 2021 */
 
-/* html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-} */
+/* NAVBAR SETTINGS */
 
-/* C'est parti */
-body {
-  font-family: "Noto Sans JP", sans-serif;
-  margin-top: 56px;
+.navbar {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  flex-direction: row;
+  padding: 20px 0px;
 }
+
+.navbar li {
+  display: inline;
+  margin: 0px 15px;
+}
+
+.navbar a {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.navbar a:visited,
+.navbar a:link {
+  color: white;
+}
+
+.navbar a:hover,
+.navbar a:active {
+  font-weight: bold;
+}
+
+/* CONTRIBUTION GENERAL SETTINGS */
+
+.containerContribute {
+  width: 900px;
+  margin: 0px auto;
+}
+
+.topMargin {
+  margin-top: 40px;
+}
+
+.h1Contribute {
+  text-align: left;
+}
+
+.sectionHead {
+  float: left;
+  margin-right: 15px;
+}
+
+.buttonContribute {
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  background: linear-gradient(
+    to right top,
+    rgb(8, 87, 97) -30%,
+    rgb(7, 100, 24) 100%
+  );
+  padding: 3px 10px;
+}
+
+.modules {
+  display: flex;
+  flex-direction: column;
+}
+
+.moduleFull {
+  background-color: rgba(224, 232, 235, 0.733);
+  padding: 10px 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* 
 h1 {
   font-size: 35px;
 }
@@ -62,7 +113,7 @@ h5 {
   background-size: cover;
   background-position: center;
   z-index: 9000;
-}
+} */
 
 .bannerHome {
   display: flex;
