@@ -40,11 +40,12 @@ div.background {
   /* Setting text color to white */
   color: white;
   /*  Setting the gradient  */
-  background: linear-gradient(
+  /* background: linear-gradient(
     to right top,
     rgb(8, 87, 97) 35%,
     rgb(7, 100, 24) 100%
-  );
+  ); */
+  background: pink;
   /* Anchoring top to 0 */
   top: 0px;
   /* Setting width to 100% of window size */
